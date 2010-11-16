@@ -1,0 +1,21 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="kaixin" itemID="4cdabf9f-000000ae" linkageExportForAS="true" linkageClassName="kaixin" sourceLibraryItemHRef="元件 1" scaleGridLeft="-19" scaleGridRight="20" scaleGridTop="-18" scaleGridBottom="16.95" lastModified="1289404334">
+  <timeline>
+    <DOMTimeline name="kaixin">
+      <layers>
+        <DOMLayer name="图层 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" libraryItemName="kaixin001.gif">
+                  <matrix>
+                    <Matrix tx="-32" ty="-32"/>
+                  </matrix>
+                </DOMBitmapInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>
