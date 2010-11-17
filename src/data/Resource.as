@@ -24,8 +24,6 @@ package data
 		
 		[Embed(source='data.swf', symbol='obj')]
 		static public var OBJ:Class;
-		
-		[Embed(source='data.swf', symbol='kaixin')]
-		static public var KAIXIN:Class;
+
 	}
 }
