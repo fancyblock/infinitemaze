@@ -4,6 +4,7 @@ package {
 	import Maze.MazeGenerator;
 	import Maze.SubMaze;
 	import data.Resource;
+	import Mover.Step;
 	import Mover.Walker;
 	
 	import flash.display.DisplayObjectContainer;

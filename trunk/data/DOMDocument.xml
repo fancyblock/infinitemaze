@@ -2,11 +2,8 @@
      <folders>
           <DOMFolderItem name="mazeWall" itemID="4cd507cc-00000036"/>
      </folders>
-     <media>
-          <DOMBitmapItem name="kaixin001.gif" itemID="4cdabf9f-000000af" sourceExternalFilepath=".\LIBRARY\kaixin001.gif" sourceLastImported="1282490545" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="kaixin001.gif" bitmapDataHRef="M 1 1289404304.dat" frameRight="1280" frameBottom="1280"/>
-     </media>
+     <media/>
      <symbols>
-          <Include href="kaixin.xml"/>
           <Include href="mazeWall/wall_dir0.xml"/>
           <Include href="mazeWall/wall_dir3.xml"/>
           <Include href="mazeWall/wall_dir6.xml"/>
@@ -19,16 +16,7 @@
                     <DOMLayer name="图层 1" color="#4FFF4F" current="true" isSelected="true">
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
-                                   <elements>
-                                        <DOMSymbolInstance libraryItemName="kaixin" name="" centerPoint3DX="275.45" centerPoint3DY="199.95">
-                                             <matrix>
-                                                  <Matrix tx="275.45" ty="199.95"/>
-                                             </matrix>
-                                             <transformationPoint>
-                                                  <Point/>
-                                             </transformationPoint>
-                                        </DOMSymbolInstance>
-                                   </elements>
+                                   <elements/>
                               </DOMFrame>
                          </frames>
                     </DOMLayer>
@@ -338,6 +326,7 @@
      </extendedSwatchLists>
      <PrinterSettings/>
      <publishHistory>
+          <PublishItem publishSize="1411" publishTime="1290007073"/>
           <PublishItem publishSize="4872" publishTime="1289404357"/>
           <PublishItem publishSize="1577" publishTime="1289047886"/>
           <PublishItem publishSize="1383" publishTime="1289031190"/>

@@ -32,7 +32,11 @@ package Mover
 		 */
 		public function SetStep( angle:Number, distance:Number ):void
 		{
-			//[unfinished]
+			//var ang:Number = Math.PI * ( 2.5 - angle / 6 );
+			var ang:Number = Math.PI * 2 - ( Math.PI * angle / 6 ) + Math.PI / 2;
+			
+			m_vec.x = Math.cos( ang ) * distance;
+			m_vec.y = Math.sin( ang ) * distance;
 		}
 		
 		/**
