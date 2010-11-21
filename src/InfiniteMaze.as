@@ -12,6 +12,8 @@ package {
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.geom.Point;
+	import com.pblabs.engine.PBE;
+	import com.pblabs.engine.debug.Logger;
 
 	/**
 	 * @author	Hejiabin
@@ -28,6 +30,9 @@ package {
 		
 		public function InfiniteMaze()
 		{
+			PBE.startup( this );
+			Logger.print( this, "test" );
+			
 			//create the initial maze
 			m_maze = new SubMaze();
 			m_maze.Create( 20, 20, 20, 20 );
@@ -40,7 +45,6 @@ package {
 			
 			//game control
 			this.addEventListener( Event.ENTER_FRAME, _onFrame );
-			this.stage.addEventListener( KeyboardEvent.KEY_DOWN, _onKeyDown );
 		}
 		
 		//---------------------------------- private function ----------------------------------
@@ -61,27 +65,6 @@ package {
 		}
 		
 		//---------------------------------- event callback ------------------------------------
-		
-		private function _onKeyDown( evt:KeyboardEvent ):void
-		{
-			switch( evt.keyCode )
-			{
-			case 119:	//[UP]
-				//
-				break;
-			case 115:	//[DOWN]
-				//
-				break;
-			case 97:	//[LEFT]
-				//
-				break;
-			case 100:	//[RIGHT]
-				//
-				break;
-			default:
-				break;
-			}
-		}
 		
 		private function _onFrame( evt:Event ):void
 		{
