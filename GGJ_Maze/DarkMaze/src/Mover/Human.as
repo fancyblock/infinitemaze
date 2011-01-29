@@ -91,8 +91,11 @@ package Mover
 		
 		public function Update():void
 		{
-			this.x = m_nextPos.x;
-			this.y = m_nextPos.y;
+			if ( m_nextPos != null )
+			{
+				this.x = m_nextPos.x;
+				this.y = m_nextPos.y;
+			}
 		}
 		
 		public function PlayAni( ani:String ):void

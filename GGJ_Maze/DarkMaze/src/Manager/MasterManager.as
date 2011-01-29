@@ -79,7 +79,7 @@ package Manager
 				
 				distance = mover.GetPosition().subtract( masterMover.GetPosition() );
 				
-				if ( distance.length < ( mover.Redius() + masterMover.Redius() ) )
+				if ( distance.length < masterMover.Redius() )
 				{
 					return master;
 				}

@@ -100,6 +100,8 @@ package Mover
 			{
 				Move( DirectionDef.DIR_3, GameDefine.HeroVelocity );
 			}
+			
+			m_mover.UpdateSlavePosition();
 		}
 		
 		public function SetState( state:String ):void

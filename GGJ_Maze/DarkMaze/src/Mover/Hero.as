@@ -17,6 +17,8 @@ package Mover
 		private var m_slaves:Array = null;
 		private var m_slaveFlag:Array = null;
 		
+		private var m_tracePath:Array = null;
+		
 		//-------------------------------- public function ----------------------------------
 		
 		/**
@@ -28,6 +30,8 @@ package Mover
 			
 			m_slaves = new Array();
 			m_slaveFlag = [new GlowFilter( 0xff0000 )];
+			
+			m_tracePath = new Array();
 		}
 		
 		/* INTERFACE Mover.IMaster */
@@ -59,6 +63,25 @@ package Mover
 			return this;
 		}
 		
+		public function UpdateSlavePosition():void
+		{
+			m_tracePath.push( new Point( this.x, this.y ) );
+			
+			var count:int = this.SlaveCount();
+			if ( m_tracePath.length > count * 8 )
+			{
+				m_tracePath.shift();
+			}
+			
+			var slave:IMover;
+			for ( var i:int = 0; i < count; i++ )
+			{
+				slave = m_slaves[i] as IMover;
+				
+				slave.SetNextPosition( m_tracePath[i * 8] );
+				slave.Update();
+			}
+		}
 		
 		//-------------------------------- private function ---------------------------------
 		
