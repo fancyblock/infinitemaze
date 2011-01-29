@@ -5,9 +5,11 @@ package Stage
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
+	import flash.utils.Timer;
 	import Manager.MasterManager;
 	import Manager.MoverHolderManager;
 	import Maze.MazeGenerator;
@@ -18,6 +20,7 @@ package Stage
 	import Mover.HeroHolder;
 	import Mover.Human;
 	import Mover.HumanHolder;
+	import flash.events.TimerEvent;
 
 	/**
 	 * ...
@@ -52,6 +55,9 @@ package Stage
 		private var m_hero:Hero = null;
 		private var m_humans:Array = null;
 		private var m_demons:Array = null;
+		
+		private var m_timer:Timer = null;
+		private var m_countdown:int = 0;
 		
 		//-------------------------------- public function ----------------------------------
 		
@@ -114,6 +120,7 @@ package Stage
 			createKnowMap();
 			
 			initlalUI();
+			start();
 		}
 		
 		//leave this stage
@@ -189,7 +196,7 @@ package Stage
 			
 			var demon:Demon = null;
 			var demonController:DemonHolder = null;
-			for ( var i:int = 0; i < 2; i++ )
+			for ( var i:int = 0; i < 4; i++ )
 			{
 				demon = new Demon( DemonAni, new Point( int( GameDefine.MAZE_WIDTH * Math.random() ) * GameDefine.MAZE_GRID_SIZE + GameDefine.MAZE_GRID_SIZE * 0.5,
 														int( GameDefine.MAZE_HEIGHT * Math.random() ) * GameDefine.MAZE_GRID_SIZE + GameDefine.MAZE_GRID_SIZE * 0.5 ) );
@@ -202,9 +209,6 @@ package Stage
 				
 				m_moverCanva.addChild( demon );
 			}
-			
-			//[unfinished]
-			// create two demon beside export
 		}
 		
 		//create a visible area
@@ -289,7 +293,33 @@ package Stage
 			//[unfinished]
 		}
 		
+		//start
+		private function start():void
+		{
+			m_countdown = GameDefine.CountdownSec;
+			m_timer = new Timer( 1000 );
+			m_timer.addEventListener( TimerEvent.TIMER, _onTick );
+			m_timer.addEventListener( TimerEvent.TIMER_COMPLETE, _onDoom );
+			
+			m_timer.start();
+		}
+		
 		//-------------------------------- callback function --------------------------------
+		
+		private function _onTick( evt:Event ):void
+		{
+			m_countdown--;
+			m_txtCountdown.text = m_countdown.toString();
+		}
+		
+		private function _onDoom( evt:Event ):void
+		{
+			GlobalWork.GameState = GameDefine.GameState_Fight;
+			MoverHolderManager.Singleton.SetState( GameDefine.GameState_Fight );
+			
+			//[unfinished]
+		}
+		
 	}
 
 }

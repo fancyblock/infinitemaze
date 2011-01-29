@@ -8,6 +8,8 @@ package
 	public class GlobalWork 
 	{
 		public static var GameState:String = null;
+		
+		public static var ResultInfo:String = null;
 	}
 
 }
