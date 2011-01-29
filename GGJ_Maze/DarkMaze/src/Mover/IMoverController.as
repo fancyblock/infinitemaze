@@ -16,6 +16,8 @@ package Mover
 		function Move( dir:int, distance:Number ):Boolean;
 		
 		function Update( timeLapse:Number ):void;
+		
+		function SetState( state:String ):void;
 	}
 	
 }

@@ -1,5 +1,6 @@
 package Mover 
 {
+	import Define.GameDefine;
 	import Maze.ISpace;
 	import Mover.IMover;
 	/**
@@ -15,6 +16,8 @@ package Mover
 		
 		private var m_mover:IMover = null;
 		private var m_space:ISpace = null;
+		
+		private var m_state:String = null;
 		
 		//-------------------------------- public function --------------------------------
 		
@@ -45,7 +48,22 @@ package Mover
 		
 		public function Update(timeLapse:Number):void 
 		{
-			
+			switch( m_state )
+			{
+			case GameDefine.GameState_Peace:
+				//[unfinished]
+				break;
+			case GameDefine.GameState_Fight:
+				//[unfinished]
+				break;
+			default:
+				break;
+			}
+		}
+		
+		public function SetState( state:String ):void
+		{
+			m_state = state;
 		}
 		
 		//-------------------------------- private function --------------------------------

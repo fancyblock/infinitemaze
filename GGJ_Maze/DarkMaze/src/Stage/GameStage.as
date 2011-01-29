@@ -103,6 +103,9 @@ package Stage
 			m_moverCanva.mask = m_moverMask;
 			m_mazeCanva.mask = m_mazeMask;
 			
+			GlobalWork.GameState = GameDefine.GameState_Peace;
+			MoverHolderManager.Singleton.SetState( GameDefine.GameState_Peace );
+			
 			//start bgm
 			PBE.soundManager.play( "../assets/bgm.mp3" );
 		}

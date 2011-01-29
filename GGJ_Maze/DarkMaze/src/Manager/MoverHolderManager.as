@@ -72,6 +72,21 @@ package Manager
 			}
 		}
 		
+		/**
+		 * @desc	set the game state
+		 * @param	state
+		 */
+		public function SetState( state:String ):void
+		{
+			var len:int = m_moverHolders.length;
+			
+			for ( var i:int = 0; i < len; i++ )
+			{
+				var hold:IMoverController = m_moverHolders[i] as IMoverController;
+				hold.SetState( state );
+			}
+		}
+		
 		//------------------------------ private function ----------------------------------
 		
 		//initial the singleton

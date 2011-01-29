@@ -97,6 +97,11 @@ package Mover
 			}
 		}
 		
+		public function SetState( state:String ):void
+		{
+			//[unfinished]
+		}
+		
 		//-------------------------------- private function ---------------------------------
 		
 		//-------------------------------- callback function --------------------------------
