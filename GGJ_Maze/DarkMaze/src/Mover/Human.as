@@ -1,5 +1,6 @@
 package Mover 
 {
+	import Define.AnimationDef;
 	import Define.GameDefine;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -44,6 +45,25 @@ package Mover
 			{
 				this.x = pos.x;
 				this.y = pos.y;
+			}
+
+			//set a random animation
+			switch( int( Math.random() * 4.0 ) )
+			{
+			case 0:
+				PlayAni( AnimationDef.Ani_Dir0 );
+				break;
+			case 1:
+				PlayAni( AnimationDef.Ani_Dir3 );
+				break;
+			case 2:
+				PlayAni( AnimationDef.Ani_Dir6 );
+				break;
+			case 3:
+				PlayAni( AnimationDef.Ani_Dir9 );
+				break;
+			default:
+				break;
 			}
 		}
 		

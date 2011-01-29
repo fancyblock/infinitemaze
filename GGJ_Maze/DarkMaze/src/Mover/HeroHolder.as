@@ -20,7 +20,7 @@ package Mover
 				
 		//-------------------------------- private member -----------------------------------
 		
-		private var m_mover:IMover = null;
+		private var m_mover:Hero = null;
 		private var m_space:ISpace = null;
 		
 		//-------------------------------- public function ----------------------------------
@@ -36,7 +36,7 @@ package Mover
 		
 		public function AttachMover(mover:IMover):void 
 		{
-			m_mover = mover;
+			m_mover = mover as Hero;
 		}
 		
 		public function AttachSpace( space:ISpace ):void

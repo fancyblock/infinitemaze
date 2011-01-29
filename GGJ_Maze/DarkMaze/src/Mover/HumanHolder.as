@@ -1,6 +1,7 @@
 package Mover 
 {
 	import Define.GameDefine;
+	import Manager.MasterManager;
 	import Maze.ISpace;
 	import Mover.IMover;
 	/**
@@ -14,10 +15,12 @@ package Mover
 		
 		//-------------------------------- private member --------------------------------
 		
-		private var m_mover:IMover = null;
+		private var m_mover:Human = null;
 		private var m_space:ISpace = null;
 		
 		private var m_state:String = null;
+		
+		private var m_master:IMaster = null;
 		
 		//-------------------------------- public function --------------------------------
 		
@@ -33,7 +36,7 @@ package Mover
 		
 		public function AttachMover(mover:IMover):void 
 		{
-			m_mover = mover;
+			m_mover = mover as Human;
 		}
 		
 		public function AttachSpace(space:ISpace):void 
@@ -48,16 +51,18 @@ package Mover
 		
 		public function Update(timeLapse:Number):void 
 		{
-			switch( m_state )
+			var master:IMaster = MasterManager.Singleton.HitMaster( m_mover );
+			
+			// follow the new master
+			if ( master != null )
 			{
-			case GameDefine.GameState_Peace:
-				//[unfinished]
-				break;
-			case GameDefine.GameState_Fight:
-				//[unfinished]
-				break;
-			default:
-				break;
+				if ( m_master != null )
+				{
+					unfollow( m_master );
+				}
+				
+				m_master = master;
+				follow( master );
 			}
 		}
 		
@@ -67,6 +72,20 @@ package Mover
 		}
 		
 		//-------------------------------- private function --------------------------------
+		
+		// follow master
+		private function follow( master:IMaster ):void
+		{
+			master.AddSlave( m_mover );
+			m_mover.filters = master.MasterFlag();
+		}
+		
+		// unfollow master
+		private function unfollow( master:IMaster ):void
+		{
+			master.RemoveSlave( m_mover );
+			m_mover.filters = null;
+		}
 		
 		//-------------------------------- callback function -------------------------------
 		

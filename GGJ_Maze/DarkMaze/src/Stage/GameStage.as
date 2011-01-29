@@ -7,11 +7,14 @@ package Stage
 	import flash.display.Sprite;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import Manager.MasterManager;
 	import Manager.MoverHolderManager;
 	import Maze.MazeGenerator;
 	import Maze.SubMaze;
+	import Mover.Hero;
 	import Mover.HeroHolder;
 	import Mover.Human;
+	import Mover.HumanHolder;
 
 	/**
 	 * ...
@@ -39,7 +42,8 @@ package Stage
 		private var m_moverMask:Sprite = null;
 		
 		private var m_maze:SubMaze = null;
-		private var m_hero:Human = null;
+		private var m_hero:Hero = null;
+		private var m_humans:Array = null;
 		
 		//-------------------------------- public function ----------------------------------
 		
@@ -91,8 +95,8 @@ package Stage
 			initialCanva();
 			
 			createMaze();
+			createHumans();
 			createHero();
-			//[unfinished]
 			
 			createVisibleArea();
 			createKnowMap();
@@ -101,7 +105,7 @@ package Stage
 		//leave this stage
 		override protected function onLeave():void
 		{
-			//[unfinished]
+			m_gameContainer.removeChild( m_canva );
 		}
 		
 		//create the canva
@@ -132,14 +136,36 @@ package Stage
 		//create the hero
 		private function createHero():void
 		{
-			m_hero = new Human( HeroAni );
+			m_hero = new Hero( HeroAni );
 			var heroHolder:HeroHolder = new HeroHolder();
 			
 			heroHolder.AttachMover( m_hero );
 			heroHolder.AttachSpace( m_maze );
 			MoverHolderManager.Singleton.AddHolder( heroHolder );
+			MasterManager.Singleton.AddMaster( m_hero );
 			
 			m_moverCanva.addChild( m_hero );
+		}
+		
+		//create all the humans
+		private function createHumans():void
+		{
+			m_humans = new Array();
+			
+			var human:Human = null;
+			var humanController:HumanHolder = null;
+			for ( var i:int = 0; i < GameDefine.HumanCount; i++ )
+			{
+				human = new Human( HumanAni, new Point( int( GameDefine.MAZE_WIDTH * Math.random() ) * GameDefine.MAZE_GRID_SIZE + GameDefine.MAZE_GRID_SIZE * 0.5,
+														int( GameDefine.MAZE_HEIGHT * Math.random() ) * GameDefine.MAZE_GRID_SIZE + GameDefine.MAZE_GRID_SIZE * 0.5 ) );
+														
+				humanController = new HumanHolder();
+				humanController.AttachMover( human );
+				humanController.AttachSpace( m_maze );
+				MoverHolderManager.Singleton.AddHolder( humanController );
+				
+				m_moverCanva.addChild( human );
+			}
 		}
 		
 		//create a visible area
@@ -160,7 +186,7 @@ package Stage
 		{
 			m_knowMapData = new BitmapData( GameDefine.MAZE_WIDTH * GameDefine.MAZE_GRID_SIZE + 10, GameDefine.MAZE_HEIGHT * GameDefine.MAZE_GRID_SIZE + 10, true, 0x00000000 );
 			m_knowMap.bitmapData = m_knowMapData;
-			m_knowMap.alpha = 0.3;
+			m_knowMap.alpha = 0.35;
 		}
 		
 		//update the visible area
@@ -174,6 +200,12 @@ package Stage
 			
 			m_knowMapData.draw( m_map );
 			m_knowMap.bitmapData = m_knowMapData;
+			
+			m_mapMask.width = 150 + m_hero.SlaveCount() * 10;
+			m_mapMask.height = 150 + m_hero.SlaveCount() * 10;
+			
+			m_moverMask.width = m_mapMask.width;
+			m_moverMask.height = m_mapMask.width;
 		}
 		
 		//update the map offset
@@ -207,11 +239,6 @@ package Stage
 		{
 			var newPosX:Number = m_canva.x + offsetX;
 			var newPosY:Number = m_canva.y + offsetY;
-			
-		//	if ( newPosX > 10 || newPosY > 10 || newPosX < -( m_canva.width - 600 ) || newPosY < -( m_canva.height - 600 ) )
-		//	{
-		//		return;
-		//	}
 			
 			m_canva.x = newPosX;
 			m_canva.y = newPosY;
