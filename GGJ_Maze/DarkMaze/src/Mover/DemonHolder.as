@@ -1,5 +1,6 @@
 package Mover 
 {
+	import Define.AnimationDef;
 	import Define.GameDefine;
 	import Manager.MasterManager;
 	import Maze.ISpace;
@@ -14,6 +15,8 @@ package Mover
 		//-------------------------------- static member ------------------------------------
 				
 		//-------------------------------- private member -----------------------------------
+		
+		private var m_alive:Boolean = true;
 		
 		//-------------------------------- public function ----------------------------------
 		
@@ -30,10 +33,18 @@ package Mover
 		 */
 		override public function Update( timeLapse:Number ):void
 		{
+			if ( m_alive == false ) return;
+			
 			switch( m_state )
 			{
 			case GameDefine.GameState_Peace:
 				m_mover.SetActive( false );
+				if ( MasterManager.Singleton.HitActor( m_mover ) == true )
+				{
+					m_mover.parent.addChildAt( m_mover, 0 );
+					m_mover.PlayAni( AnimationDef.Ani_Die );
+					m_alive = false;
+				}
 				break;
 			case GameDefine.GameState_Fight:
 				m_mover.SetActive( true );

@@ -11,6 +11,8 @@ package Define
 		static public var Ani_Dir3:String = "DIR_3";
 		static public var Ani_Dir6:String = "DIR_6";
 		static public var Ani_Dir9:String = "DIR_9";
+		
+		static public var Ani_Die:String = "Die";
 	}
 
 }

@@ -4,6 +4,7 @@ package Stage
 	import Define.GameDefine;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Point;
@@ -42,6 +43,7 @@ package Stage
 		private var m_txtYourMan:TextField = null;
 		private var m_txtEvilMan:TextField = null;
 		private var m_txtCountdown:TextField = null;
+		private var m_mcFightDlg:MovieClip = null;
 		
 		private var m_canva:Sprite = null;
 		private var m_moverCanva:Sprite = null;
@@ -104,6 +106,7 @@ package Stage
 			m_txtYourMan = UI_ROOT.getChildByName( "txtYourMan" ) as TextField;
 			m_txtEvilMan = UI_ROOT.getChildByName( "txtEvilMan" ) as TextField;
 			m_txtCountdown = UI_ROOT.getChildByName( "txtCountdown" ) as TextField;
+			m_mcFightDlg = UI_ROOT.getChildByName( "mcFightAni" ) as MovieClip;
 		}
 		
 		//enter this stage
@@ -196,7 +199,7 @@ package Stage
 			
 			var demon:Demon = null;
 			var demonController:DemonHolder = null;
-			for ( var i:int = 0; i < 4; i++ )
+			for ( var i:int = 0; i < GameDefine.DemonCount; i++ )
 			{
 				demon = new Demon( DemonAni, new Point( int( GameDefine.MAZE_WIDTH * Math.random() ) * GameDefine.MAZE_GRID_SIZE + GameDefine.MAZE_GRID_SIZE * 0.5,
 														int( GameDefine.MAZE_HEIGHT * Math.random() ) * GameDefine.MAZE_GRID_SIZE + GameDefine.MAZE_GRID_SIZE * 0.5 ) );
@@ -290,13 +293,22 @@ package Stage
 		//initial ui
 		private function initlalUI():void
 		{
-			//[unfinished]
+			m_txtEvilCnt.text = GameDefine.DemonCount.toString();
+			m_txtFreeMan.text = GameDefine.HumanCount.toString();
+			m_txtYourMan.text = "0";
+			m_txtEvilMan.text = "0";
+			
+			m_mcFightDlg.visible = false;
 		}
 		
 		//start
 		private function start():void
 		{
 			m_countdown = GameDefine.CountdownSec;
+			
+			GlobalWork.GameState = GameDefine.GameState_Peace;
+			MoverHolderManager.Singleton.SetState( GameDefine.GameState_Peace );
+			
 			m_timer = new Timer( 1000 );
 			m_timer.addEventListener( TimerEvent.TIMER, _onTick );
 			m_timer.addEventListener( TimerEvent.TIMER_COMPLETE, _onDoom );
@@ -314,6 +326,11 @@ package Stage
 		
 		private function _onDoom( evt:Event ):void
 		{
+			m_timer.removeEventListener( TimerEvent.TIMER, _onTick );
+			m_timer.removeEventListener( TimerEvent.TIMER_COMPLETE, _onDoom );
+			
+			m_txtCountdown.text = "Run !";
+			
 			GlobalWork.GameState = GameDefine.GameState_Fight;
 			MoverHolderManager.Singleton.SetState( GameDefine.GameState_Fight );
 			
