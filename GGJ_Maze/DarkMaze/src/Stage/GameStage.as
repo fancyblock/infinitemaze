@@ -11,6 +11,8 @@ package Stage
 	import Manager.MoverHolderManager;
 	import Maze.MazeGenerator;
 	import Maze.SubMaze;
+	import Mover.Demon;
+	import Mover.DemonHolder;
 	import Mover.Hero;
 	import Mover.HeroHolder;
 	import Mover.Human;
@@ -44,6 +46,7 @@ package Stage
 		private var m_maze:SubMaze = null;
 		private var m_hero:Hero = null;
 		private var m_humans:Array = null;
+		private var m_demons:Array = null;
 		
 		//-------------------------------- public function ----------------------------------
 		
@@ -96,6 +99,7 @@ package Stage
 			
 			createMaze();
 			createHumans();
+			createDemon();
 			createHero();
 			
 			createVisibleArea();
@@ -166,6 +170,30 @@ package Stage
 				
 				m_moverCanva.addChild( human );
 			}
+		}
+		
+		//create all the demon
+		private function createDemon():void
+		{
+			m_demons = new Array();
+			
+			var demon:Demon = null;
+			var demonController:DemonHolder = null;
+			for ( var i:int = 0; i < 2; i++ )
+			{
+				demon = new Demon( DemonAni, new Point( int( GameDefine.MAZE_WIDTH * Math.random() ) * GameDefine.MAZE_GRID_SIZE + GameDefine.MAZE_GRID_SIZE * 0.5,
+														int( GameDefine.MAZE_HEIGHT * Math.random() ) * GameDefine.MAZE_GRID_SIZE + GameDefine.MAZE_GRID_SIZE * 0.5 ) );
+				
+				demonController = new DemonHolder();
+				demonController.AttachMover( demon );
+				demonController.AttachSpace( m_maze );
+				MoverHolderManager.Singleton.AddHolder( demonController );
+				MasterManager.Singleton.AddMaster( demon );
+				
+				m_moverCanva.addChild( demon );
+			}
+			
+			//[unfinished]
 		}
 		
 		//create a visible area

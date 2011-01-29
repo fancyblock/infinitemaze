@@ -11,13 +11,13 @@ package Mover
 	public class Hero extends Human implements IMaster 
 	{
 		//-------------------------------- static member ------------------------------------
-				
+			
 		//-------------------------------- private member -----------------------------------
 		
-		private var m_slaves:Array = null;
-		private var m_slaveFlag:Array = null;
+		protected var m_slaves:Array = null;
+		protected var m_slaveFlag:Array = null;
 		
-		private var m_tracePath:Array = null;
+		protected var m_tracePath:Array = null;
 		
 		//-------------------------------- public function ----------------------------------
 		

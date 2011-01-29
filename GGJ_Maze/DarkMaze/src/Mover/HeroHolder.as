@@ -20,8 +20,9 @@ package Mover
 				
 		//-------------------------------- private member -----------------------------------
 		
-		private var m_mover:Hero = null;
-		private var m_space:ISpace = null;
+		protected var m_mover:Hero = null;
+		protected var m_space:ISpace = null;
+		protected var m_state:String = null;
 		
 		//-------------------------------- public function ----------------------------------
 		
@@ -104,7 +105,7 @@ package Mover
 		
 		public function SetState( state:String ):void
 		{
-			//[unfinished]
+			m_state = state;
 		}
 		
 		//-------------------------------- private function ---------------------------------

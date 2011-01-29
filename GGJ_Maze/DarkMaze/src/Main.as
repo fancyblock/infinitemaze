@@ -37,6 +37,9 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
+			//[for test]
+			this.stage.addChild( new GameMonitor() );
+			
 			PBE.startup( this );
 			
 			//regisit screen
@@ -45,8 +48,7 @@ package
 			PBE.screenManager.registerScreen( WindowEnum.EndScreen, new EndStage() );
 			
 			//entry point
-		//	PBE.screenManager.push( WindowEnum.WelcomeScreen );
-			PBE.screenManager.push( WindowEnum.GameScreen );
+			PBE.screenManager.push( WindowEnum.WelcomeScreen );
 			
 		}
 		
