@@ -90,6 +90,7 @@ package Stage
 			
 			updateVisibleArea();
 			updateMapOffset();
+			updateUI();
 			
 		}
 		
@@ -309,11 +310,27 @@ package Stage
 			GlobalWork.GameState = GameDefine.GameState_Peace;
 			MoverHolderManager.Singleton.SetState( GameDefine.GameState_Peace );
 			
-			m_timer = new Timer( 1000 );
+			GlobalWork.EvilCnt = GameDefine.DemonCount;
+			GlobalWork.FreeManCnt = GameDefine.HumanCount;
+			GlobalWork.YourManCnt = 0;
+			GlobalWork.EvilManCnt = 0;
+			
+			m_timer = new Timer( 1000, m_countdown );
 			m_timer.addEventListener( TimerEvent.TIMER, _onTick );
 			m_timer.addEventListener( TimerEvent.TIMER_COMPLETE, _onDoom );
 			
 			m_timer.start();
+		}
+		
+		//update ui info
+		private function updateUI():void
+		{
+			GlobalWork.FreeManCnt = GameDefine.HumanCount - GlobalWork.EvilManCnt - GlobalWork.YourManCnt;
+			
+			m_txtEvilCnt.text = GlobalWork.EvilCnt.toString();
+			m_txtFreeMan.text = GlobalWork.FreeManCnt.toString();
+			m_txtYourMan.text = GlobalWork.YourManCnt.toString();
+			m_txtEvilMan.text = GlobalWork.EvilManCnt.toString();
 		}
 		
 		//-------------------------------- callback function --------------------------------

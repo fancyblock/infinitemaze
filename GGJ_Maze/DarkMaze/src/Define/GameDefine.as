@@ -10,6 +10,9 @@ package Define
 		public static var GameState_Peace:String = "State Peace";
 		public static var GameState_Fight:String = "State Fight";
 		
+		public static var MasterHero:String = "Master Hero";
+		public static var MasterEvil:String = "Master Evil";
+		
 		public static var MAZE_WIDTH:int = 20;
 		public static var MAZE_HEIGHT:int = 20;
 		public static var MAZE_GRID_SIZE:int = 36;

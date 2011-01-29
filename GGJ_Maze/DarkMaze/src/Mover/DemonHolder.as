@@ -1,10 +1,10 @@
 package Mover 
 {
+	import com.pblabs.engine.PBE;
 	import Define.AnimationDef;
 	import Define.GameDefine;
 	import Manager.MasterManager;
-	import Maze.ISpace;
-	import Mover.IMover;
+	
 	/**
 	 * ...
 	 * @author	Hejiabin
@@ -44,6 +44,8 @@ package Mover
 					m_mover.parent.addChildAt( m_mover, 0 );
 					m_mover.PlayAni( AnimationDef.Ani_Die );
 					m_alive = false;
+					GlobalWork.EvilCnt --;
+					PBE.soundManager.play( "../assets/Sound/SE/kill.mp3", "SE" );
 				}
 				break;
 			case GameDefine.GameState_Fight:

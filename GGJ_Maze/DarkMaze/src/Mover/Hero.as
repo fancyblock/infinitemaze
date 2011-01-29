@@ -1,5 +1,6 @@
 package Mover 
 {
+	import Define.GameDefine;
 	import flash.filters.GlowFilter;
 	import flash.geom.Point;
 	
@@ -16,6 +17,7 @@ package Mover
 		
 		protected var m_slaves:Array = null;
 		protected var m_slaveFlag:Array = null;
+		protected var m_type:String = null;
 		
 		protected var m_tracePath:Array = null;
 		protected var m_active:Boolean = true;
@@ -31,6 +33,7 @@ package Mover
 			
 			m_slaves = new Array();
 			m_slaveFlag = [new GlowFilter( 0xff0000 )];
+			m_type = GameDefine.MasterHero;
 			
 			m_tracePath = new Array();
 		}
@@ -52,11 +55,18 @@ package Mover
 			var index:int = m_slaves.lastIndexOf( slave );
 			
 			m_slaves.splice( index, 1 );
+			
+			for ( var i:int = 0; i < 8; i++ ) m_tracePath.pop();
 		}
 		
 		public function MasterFlag():Array
 		{
 			return m_slaveFlag;
+		}
+		
+		public function MasterType():String
+		{
+			return m_type;
 		}
 		
 		public function GetIMover():IMover

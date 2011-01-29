@@ -4,6 +4,7 @@ package Mover
 	import Manager.MasterManager;
 	import Maze.ISpace;
 	import Mover.IMover;
+	import com.pblabs.engine.PBE;
 	/**
 	 * ...
 	 * @author	Hejiabin
@@ -54,7 +55,7 @@ package Mover
 			var master:IMaster = MasterManager.Singleton.HitMaster( m_mover );
 			
 			// follow the new master
-			if ( master != null && master.IsActived() )
+			if ( master != null && master.IsActived() && master != m_master )
 			{
 				if ( m_master != null )
 				{
@@ -78,6 +79,17 @@ package Mover
 		{
 			master.AddSlave( m_mover );
 			m_mover.filters = master.MasterFlag();
+			
+			PBE.soundManager.play( "../assets/Sound/SE/join.mp3", "SE" );
+			
+			if ( master.MasterType() == GameDefine.MasterEvil )
+			{
+				GlobalWork.EvilManCnt ++;
+			}
+			else
+			{
+				GlobalWork.YourManCnt ++;
+			}
 		}
 		
 		// unfollow master
@@ -85,6 +97,15 @@ package Mover
 		{
 			master.RemoveSlave( m_mover );
 			m_mover.filters = null;
+			
+			if ( master.MasterType() == GameDefine.MasterEvil )
+			{
+				GlobalWork.EvilManCnt --;
+			}
+			else
+			{
+				GlobalWork.YourManCnt --;
+			}
 		}
 		
 		//-------------------------------- callback function -------------------------------

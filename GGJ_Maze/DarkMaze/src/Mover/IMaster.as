@@ -21,6 +21,8 @@ package Mover
 		function IsActived():Boolean;
 		
 		function SetActive( value:Boolean ):void;
+		
+		function MasterType():String;
 	}
 	
 }
