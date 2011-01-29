@@ -1,5 +1,6 @@
 package Manager 
 {
+	import Mover.IMoverController;
 	/**
 	 * ...
 	 * @author	Hejiabin
@@ -13,6 +14,8 @@ package Manager
 		static private var m_safeFlag:Boolean = false;
 		
 		//------------------------------ private member ------------------------------------
+		
+		private var m_moverHolders:Array = null;
 		
 		//------------------------------ public function -----------------------------------
 		
@@ -46,12 +49,35 @@ package Manager
 			return m_instance;
 		}
 		
+		/**
+		 * @desc	add a holder to the manager
+		 * @param	hold
+		 */
+		public function AddHolder( hold:IMoverController ):void
+		{
+			m_moverHolders.push( hold );
+		}
+		
+		/**
+		 * @desc	update all the holder
+		 */
+		public function Update():void
+		{
+			var len:int = m_moverHolders.length;
+			
+			for ( var i:int = 0; i < len; i++ )
+			{
+				var hold:IMoverController = m_moverHolders[i] as IMoverController;
+				hold.Update( 0 );
+			}
+		}
+		
 		//------------------------------ private function ----------------------------------
 		
 		//initial the singleton
 		private function initial():void
 		{
-			//[unfinished]
+			m_moverHolders = new Array();
 		}
 		
 		//------------------------------- event callback -----------------------------------	

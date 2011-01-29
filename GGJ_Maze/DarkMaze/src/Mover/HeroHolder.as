@@ -67,10 +67,12 @@ package Mover
 			}
 			
 			m_mover.SetNextPosition( nextPos );
-			if ( m_space.IsHitWall( m_mover ) == false )
+			if ( m_space.IsHitWall( m_mover ) == true )
 			{
-				m_mover.Update();
+				return false;
 			}
+			
+			m_mover.Update();
 			
 			return true;
 		}

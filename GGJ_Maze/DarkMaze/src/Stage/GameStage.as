@@ -6,10 +6,13 @@ package Stage
 	import Define.GameDefine;
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
+	import flash.geom.Point;
+	import Manager.MoverHolderManager;
 	import Maze.MazeGenerator;
 	import Maze.SubMaze;
 	import Mover.HeroHolder;
 	import Mover.Human;
+	import Mover.HumanHolder;
 	import Mover.IMoverController;
 	
 	/**
@@ -34,6 +37,8 @@ package Stage
 		
 		private var m_maze:SubMaze = null;
 		private var m_actor:Human = null;
+		private var m_humans:Array = null;
+		private var m_evil:Array = null;
 		private var m_actorHolder:IMoverController = null;
 		
 		//------------------------------ public function -----------------------------------
@@ -52,11 +57,12 @@ package Stage
 		 */
 		override public function onFrame (delta:Number) : void
 		{
-			m_actorHolder.Update( 0 );
+			MoverHolderManager.Singleton.Update();
+			
 			m_moverMask.x = m_actor.x;
 			m_moverMask.y = m_actor.y;
 			
-			updateArea();
+			updateArea();	//maze mask
 			
 			//[unfinished]
 		}
@@ -84,6 +90,7 @@ package Stage
 			//create the maze
 			createMaze();
 			createActor();
+			createHumans();
 			createMazeMask();
 			createMoverMask();
 			
@@ -120,8 +127,30 @@ package Stage
 			
 			m_actorHolder.AttachMover( m_actor );
 			m_actorHolder.AttachSpace( m_maze );
+			MoverHolderManager.Singleton.AddHolder( m_actorHolder );
 			
 			m_moverCanva.addChild( m_actor as Sprite );
+		}
+		
+		//create all the human
+		private function createHumans():void
+		{
+			m_humans = new Array();
+			
+			var human:Human = null;
+			var humanControl:IMoverController = null;
+			for ( var i:int = 0; i < GameDefine.HumanCount; i++ )
+			{
+				human = new Human( Resource.OBJ, new Point( int( GameDefine.MAZE_WIDTH * Math.random() ) * GameDefine.MAZE_GRID_SIZE + GameDefine.MAZE_GRID_SIZE * 0.5,
+															int( GameDefine.MAZE_HEIGHT * Math.random() ) * GameDefine.MAZE_GRID_SIZE + GameDefine.MAZE_GRID_SIZE * 0.5 ) );
+				
+				humanControl = new HumanHolder();
+				humanControl.AttachMover( human );
+				humanControl.AttachSpace( m_maze );
+				MoverHolderManager.Singleton.AddHolder( humanControl );
+				
+				m_moverCanva.addChild( human );
+			}
 		}
 		
 		//create a maze mask

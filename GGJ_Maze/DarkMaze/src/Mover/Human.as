@@ -31,7 +31,7 @@ package Mover
 			spr.x = 0;
 			spr.y = 0;
 			
-			m_redius = spr.width / 2;
+			m_redius = spr.width * 0.5 + GameDefine.MazeWallBold;
 			
 			if ( pos == null )
 			{
