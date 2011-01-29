@@ -96,6 +96,8 @@ package Mover
 				this.x = m_nextPos.x;
 				this.y = m_nextPos.y;
 			}
+			
+			positionUpdated();
 		}
 		
 		public function PlayAni( ani:String ):void
@@ -104,6 +106,10 @@ package Mover
 		}
 		
 		//-------------------------------- private function ---------------------------------
+		
+		protected function positionUpdated():void
+		{
+		}
 		
 		//-------------------------------- callback function --------------------------------
 		

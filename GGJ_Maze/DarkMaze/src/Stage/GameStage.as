@@ -201,8 +201,8 @@ package Stage
 			m_knowMapData.draw( m_map );
 			m_knowMap.bitmapData = m_knowMapData;
 			
-			m_mapMask.width = 150 + m_hero.SlaveCount() * 10;
-			m_mapMask.height = 150 + m_hero.SlaveCount() * 10;
+			m_mapMask.width = 150 + m_hero.SlaveCount() * 12;
+			m_mapMask.height = 150 + m_hero.SlaveCount() * 12;
 			
 			m_moverMask.width = m_mapMask.width;
 			m_moverMask.height = m_mapMask.width;

@@ -85,6 +85,11 @@ package Mover
 		
 		//-------------------------------- private function ---------------------------------
 		
+		override protected function positionUpdated():void
+		{
+			this.UpdateSlavePosition();
+		}
+		
 		//-------------------------------- callback function --------------------------------
 		
 	}
