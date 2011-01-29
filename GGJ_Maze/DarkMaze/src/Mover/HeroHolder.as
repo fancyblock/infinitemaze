@@ -79,19 +79,19 @@ package Mover
 		
 		public function Update( timeLapse:Number ):void
 		{
-			if ( PBE.isKeyDown( InputKey.W ) == true )
+			if ( PBE.isKeyDown( InputKey.UP ) == true )
 			{
 				Move( DirectionDef.DIR_0, GameDefine.HeroVelocity );
 			}
-			else if ( PBE.isKeyDown( InputKey.S ) == true )
+			else if ( PBE.isKeyDown( InputKey.DOWN ) == true )
 			{
 				Move( DirectionDef.DIR_6, GameDefine.HeroVelocity );
 			}
-			else if ( PBE.isKeyDown( InputKey.A ) == true )
+			else if ( PBE.isKeyDown( InputKey.LEFT ) == true )
 			{
 				Move( DirectionDef.DIR_9, GameDefine.HeroVelocity );
 			}
-			else if ( PBE.isKeyDown ( InputKey.D ) == true )
+			else if ( PBE.isKeyDown ( InputKey.RIGHT ) == true )
 			{
 				Move( DirectionDef.DIR_3, GameDefine.HeroVelocity );
 			}

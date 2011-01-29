@@ -12,11 +12,11 @@ package Define
 		
 		public static var MAZE_WIDTH:int = 20;
 		public static var MAZE_HEIGHT:int = 20;
-		public static var MAZE_GRID_SIZE:int = 20;
+		public static var MAZE_GRID_SIZE:int = 36;
 		
 		public static var MazeWallBold:Number = 2;
 		
-		public static var HeroVelocity:Number = 1;
+		public static var HeroVelocity:Number = 2;
 		
 		public static var HumanCount:int = 10;
 	}

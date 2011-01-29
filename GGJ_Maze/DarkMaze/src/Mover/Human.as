@@ -1,9 +1,9 @@
 package Mover 
 {
-	import data.Resource;
 	import Define.GameDefine;
 	import flash.display.Sprite;
 	import flash.geom.Point;
+	import flash.globalization.NumberFormatter;
 	/**
 	 * ...
 	 * @author	Hejiabin
@@ -23,7 +23,7 @@ package Mover
 		/**
 		 * @desc	constructor of Human
 		 */
-		public function Human( profile:Class, pos:Point = null ) 
+		public function Human( profile:Class, pos:Point = null, redius:Number = 7 ) 
 		{
 			//create the hero
 			var spr:Sprite = new profile() as Sprite;
@@ -31,7 +31,7 @@ package Mover
 			spr.x = 0;
 			spr.y = 0;
 			
-			m_redius = spr.width * 0.5 + GameDefine.MazeWallBold;
+			m_redius = redius;
 			
 			if ( pos == null )
 			{

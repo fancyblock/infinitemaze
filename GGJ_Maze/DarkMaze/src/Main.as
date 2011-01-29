@@ -5,7 +5,6 @@ package
 	import flash.events.Event;
 	import Stage.EndStage;
 	import Stage.GameStage;
-	import Stage.GameStageUI;
 	import Stage.WelcomeStage;
 	
 	/**
@@ -41,13 +40,14 @@ package
 			PBE.startup( this );
 			
 			//regisit screen
-			PBE.screenManager.registerScreen( WindowEnum.WelcomeScreen, new WelcomeStage( "../assets/startBG.png", WindowEnum.GameScreen ) );
+			PBE.screenManager.registerScreen( WindowEnum.WelcomeScreen, new WelcomeStage() );
 			PBE.screenManager.registerScreen( WindowEnum.GameScreen, new GameStage() );
-			PBE.screenManager.registerScreen( WindowEnum.GameUIScreen, new GameStageUI() );
 			PBE.screenManager.registerScreen( WindowEnum.EndScreen, new EndStage() );
 			
 			//entry point
-			PBE.screenManager.push( WindowEnum.WelcomeScreen );
+		//	PBE.screenManager.push( WindowEnum.WelcomeScreen );
+			PBE.screenManager.push( WindowEnum.GameScreen );
+			
 		}
 		
 		//------------------------------- event callback -----------------------------------

@@ -7,7 +7,7 @@ package Stage
 	 * @author	Hejiabin
 	 * @date	2011-1-29 1:28
 	 */
-	public class EndStage extends BaseScreen 
+	public class EndStage extends BaseUIScreen 
 	{
 		//-------------------------------- static member ------------------------------------
 				
@@ -20,7 +20,7 @@ package Stage
 		 */
 		public function EndStage() 
 		{
-			super();
+			super( "" );
 		}
 		
 		//-------------------------------- private function ---------------------------------

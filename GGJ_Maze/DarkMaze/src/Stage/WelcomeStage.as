@@ -1,57 +1,60 @@
 package Stage 
 {
-	import com.pblabs.screens.BaseScreen;
-	import com.pblabs.screens.SplashScreen;
+	import flash.events.MouseEvent;
+	import flash.display.SimpleButton;
 	
 	/**
 	 * ...
 	 * @author	Hejiabin
 	 * @date	2011/1/28 21:14
 	 */
-	public class WelcomeStage extends SplashScreen 
+	public class WelcomeStage extends BaseUIScreen 
 	{
 		//------------------------------ static member -------------------------------------
 		
 		//------------------------------ private member ------------------------------------
+		
+		private var m_btnStart:SimpleButton = null;
 		
 		//------------------------------ public function -----------------------------------
 		
 		/**
 		 * @desc	constructor of WelcomeScreen
 		 */
-		public function WelcomeStage( image:String, nextScreen:String ) 
+		public function WelcomeStage() 
 		{
-			super( image, nextScreen );
-		}
-		
-		/**
-		 * @desc	frame func
-		 * @param	delta
-		 */
-		override public function onFrame (delta:Number) : void
-		{
-			//[unfinished]
-		}
-
-		/**
-		 * @desc	callback when hide
-		 */
-		override public function onHide () : void
-		{
-			//[unfinished]
-		}
-
-		/**
-		 * @desc	callback when show
-		 */
-		override public function onShow () : void
-		{
-			//[unfinished]
+			super( "../assets/WelcomeBG.png" );
+			
+			//set the ui bgm
+			this.UI_BGM = "../assets/Sound/BGM/InitialBGM.mp3";
+			
+			//load the ui
+			this.embedUI( new WelcomeUI() );
 		}
 		
 		//------------------------------ private function ----------------------------------
 		
+		//initial the ui
+		override protected function initialUI():void
+		{
+			addChild( UI_ROOT );
+			
+			m_btnStart = UI_ROOT.getChildByName( "btnStart" ) as SimpleButton;
+			
+			//add event listener
+			m_btnStart.addEventListener( MouseEvent.CLICK, _onStart );
+			
+			//set the button se
+			this.SetMouseOverSnd( m_btnStart );
+		}
+		
 		//------------------------------- event callback -----------------------------------
+		
+		//click start game
+		private function _onStart( evt:MouseEvent ):void
+		{
+			FadeOutToScreen( WindowEnum.GameScreen );
+		}
 		
 	}
 

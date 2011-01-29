@@ -1,6 +1,5 @@
 package
 {
-	import data.Resource;
 	import Define.GameDefine;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -56,7 +55,7 @@ package
 			
 			if( cel.IsOpen( DirectionDef.DIR_0 ) == false )
 			{
-				wall = new Resource.WALL_DIR0 as Sprite;
+				wall = new wall_dir0;
 				canva.addChild( wall );
 				wall.x = offsetX;
 				wall.y = offsetY;
@@ -64,7 +63,7 @@ package
 				
 			if( cel.IsOpen( DirectionDef.DIR_3 ) == false )
 			{
-				wall = new Resource.WALL_DIR3 as Sprite;
+				wall = new wall_dir3;
 				canva.addChild( wall );
 				wall.x = offsetX;
 				wall.y = offsetY;
@@ -72,7 +71,7 @@ package
 			
 			if( cel.IsOpen( DirectionDef.DIR_6 ) == false )
 			{
-				wall = new Resource.WALL_DIR6 as Sprite;
+				wall = new wall_dir6;
 				canva.addChild( wall );
 				wall.x = offsetX;
 				wall.y = offsetY;
@@ -80,7 +79,7 @@ package
 				
 			if( cel.IsOpen( DirectionDef.DIR_9 ) == false )
 			{
-				wall = new Resource.WALL_DIR9 as Sprite;
+				wall = new wall_dir9;
 				canva.addChild( wall );
 				wall.x = offsetX;
 				wall.y = offsetY;

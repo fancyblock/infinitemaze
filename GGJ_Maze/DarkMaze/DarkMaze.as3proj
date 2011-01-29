@@ -48,6 +48,9 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="lib\PBEngine.swc" />
+    <element path="lib\tweener.swc" />
+    <element path="lib\ui.swc" />
+    <element path="lib\assets.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
