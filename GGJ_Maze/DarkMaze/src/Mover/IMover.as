@@ -17,6 +17,8 @@ package Mover
 		function GetNextPosition():Point;
 		
 		function Update():void;
+		
+		function PlayAni( ani:String ):void;
 	}
 	
 }

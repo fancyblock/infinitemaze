@@ -1,12 +1,13 @@
 package Mover 
 {
+	import com.pblabs.engine.core.InputKey;
+	import com.pblabs.engine.PBE;
+	import Define.AnimationDef;
 	import Define.DirectionDef;
 	import Define.GameDefine;
 	import flash.geom.Point;
 	import Maze.ISpace;
 	import Mover.IMover;
-	import com.pblabs.engine.PBE;
-	import com.pblabs.engine.core.InputKey;
 	
 	/**
 	 * ...
@@ -52,15 +53,19 @@ package Mover
 			{
 			case DirectionDef.DIR_0:
 				nextPos.y -= distance;
+				m_mover.PlayAni( AnimationDef.Ani_Dir0 );
 				break;
 			case DirectionDef.DIR_3:
 				nextPos.x += distance;
+				m_mover.PlayAni( AnimationDef.Ani_Dir3 );
 				break;
 			case DirectionDef.DIR_6:
 				nextPos.y += distance;
+				m_mover.PlayAni( AnimationDef.Ani_Dir6 );
 				break;
 			case DirectionDef.DIR_9:
 				nextPos.x -= distance;
+				m_mover.PlayAni( AnimationDef.Ani_Dir9 );
 				break;
 			default:
 				break;

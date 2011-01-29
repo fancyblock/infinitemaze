@@ -1,6 +1,7 @@
 package Mover 
 {
 	import Define.GameDefine;
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.geom.Point;
 	import flash.globalization.NumberFormatter;
@@ -17,6 +18,7 @@ package Mover
 		
 		private var m_nextPos:Point = null;
 		private var m_redius:Number = 0;
+		private var m_animation:MovieClip = null;
 		
 		//-------------------------------- public function ----------------------------------
 		
@@ -26,10 +28,10 @@ package Mover
 		public function Human( profile:Class, pos:Point = null, redius:Number = 7 ) 
 		{
 			//create the hero
-			var spr:Sprite = new profile() as Sprite;
-			this.addChild( spr );
-			spr.x = 0;
-			spr.y = 0;
+			m_animation = new profile() as MovieClip;
+			this.addChild( m_animation );
+			m_animation.x = 0;
+			m_animation.y = 0;
 			
 			m_redius = redius;
 			
@@ -71,6 +73,11 @@ package Mover
 		{
 			this.x = m_nextPos.x;
 			this.y = m_nextPos.y;
+		}
+		
+		public function PlayAni( ani:String ):void
+		{
+			m_animation.gotoAndStop( ani );
 		}
 		
 		//-------------------------------- private function ---------------------------------
