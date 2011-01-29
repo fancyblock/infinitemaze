@@ -54,7 +54,7 @@ package Mover
 			var master:IMaster = MasterManager.Singleton.HitMaster( m_mover );
 			
 			// follow the new master
-			if ( master != null )
+			if ( master != null && master.IsActived() )
 			{
 				if ( m_master != null )
 				{

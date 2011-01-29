@@ -1,6 +1,7 @@
 package Mover 
 {
 	import Define.GameDefine;
+	import Manager.MasterManager;
 	import Maze.ISpace;
 	import Mover.IMover;
 	/**
@@ -32,9 +33,14 @@ package Mover
 			switch( m_state )
 			{
 			case GameDefine.GameState_Peace:
+				m_mover.SetActive( false );
 				break;
 			case GameDefine.GameState_Fight:
-				//[unfinished]
+				m_mover.SetActive( true );
+				if ( MasterManager.Singleton.HitActor( m_mover ) == true )
+				{
+					//[unfinished]
+				}
 				break;
 			default:
 				break;

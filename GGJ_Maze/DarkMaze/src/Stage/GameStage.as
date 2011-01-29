@@ -7,6 +7,7 @@ package Stage
 	import flash.display.Sprite;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.text.TextField;
 	import Manager.MasterManager;
 	import Manager.MoverHolderManager;
 	import Maze.MazeGenerator;
@@ -33,7 +34,11 @@ package Stage
 		
 		//ui
 		private var m_gameContainer:Sprite = null;
-		//[unfinished]
+		private var m_txtEvilCnt:TextField = null;
+		private var m_txtFreeMan:TextField = null;
+		private var m_txtYourMan:TextField = null;
+		private var m_txtEvilMan:TextField = null;
+		private var m_txtCountdown:TextField = null;
 		
 		private var m_canva:Sprite = null;
 		private var m_moverCanva:Sprite = null;
@@ -88,8 +93,11 @@ package Stage
 			addChild( UI_ROOT );
 			
 			m_gameContainer = UI_ROOT.getChildByName( "mcGameCanva" ) as Sprite;
-			
-			//[unfinished]
+			m_txtEvilCnt = UI_ROOT.getChildByName( "txtEvilCnt" ) as TextField;
+			m_txtFreeMan = UI_ROOT.getChildByName( "txtFreeMan" ) as TextField;
+			m_txtYourMan = UI_ROOT.getChildByName( "txtYourMan" ) as TextField;
+			m_txtEvilMan = UI_ROOT.getChildByName( "txtEvilMan" ) as TextField;
+			m_txtCountdown = UI_ROOT.getChildByName( "txtCountdown" ) as TextField;
 		}
 		
 		//enter this stage
@@ -104,6 +112,8 @@ package Stage
 			
 			createVisibleArea();
 			createKnowMap();
+			
+			initlalUI();
 		}
 		
 		//leave this stage
@@ -146,7 +156,7 @@ package Stage
 			heroHolder.AttachMover( m_hero );
 			heroHolder.AttachSpace( m_maze );
 			MoverHolderManager.Singleton.AddHolder( heroHolder );
-			MasterManager.Singleton.AddMaster( m_hero );
+			MasterManager.Singleton.AddMaster( m_hero, true );
 			
 			m_moverCanva.addChild( m_hero );
 		}
@@ -194,6 +204,7 @@ package Stage
 			}
 			
 			//[unfinished]
+			// create two demon beside export
 		}
 		
 		//create a visible area
@@ -270,6 +281,12 @@ package Stage
 			
 			m_canva.x = newPosX;
 			m_canva.y = newPosY;
+		}
+		
+		//initial ui
+		private function initlalUI():void
+		{
+			//[unfinished]
 		}
 		
 		//-------------------------------- callback function --------------------------------

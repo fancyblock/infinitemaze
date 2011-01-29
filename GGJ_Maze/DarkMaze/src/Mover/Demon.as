@@ -21,7 +21,7 @@ package Mover
 		 */
 		public function Demon(profile:Class, pos:Point = null, redius:Number = 7) 
 		{
-			super(profile, pos, redius);
+			super(profile, pos, 10);
 			
 			m_slaveFlag = [new GlowFilter( 0x00ff00 )];
 		}

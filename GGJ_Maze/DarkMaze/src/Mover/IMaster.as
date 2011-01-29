@@ -17,6 +17,10 @@ package Mover
 		function MasterFlag():Array;
 		
 		function GetIMover():IMover;
+		
+		function IsActived():Boolean;
+		
+		function SetActive( value:Boolean ):void;
 	}
 	
 }

@@ -18,6 +18,7 @@ package Mover
 		protected var m_slaveFlag:Array = null;
 		
 		protected var m_tracePath:Array = null;
+		protected var m_active:Boolean = true;
 		
 		//-------------------------------- public function ----------------------------------
 		
@@ -81,6 +82,16 @@ package Mover
 				slave.SetNextPosition( m_tracePath[i * 8] );
 				slave.Update();
 			}
+		}
+		
+		public function IsActived():Boolean
+		{
+			return m_active;
+		}
+		
+		public function SetActive( value:Boolean ):void
+		{
+			m_active = value;
 		}
 		
 		//-------------------------------- private function ---------------------------------

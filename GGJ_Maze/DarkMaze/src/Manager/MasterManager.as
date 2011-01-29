@@ -19,6 +19,8 @@ package Manager
 		
 		private var m_masterList:Array = null;
 		
+		private var m_actor:IMaster = null;
+		
 		//------------------------------ public function -----------------------------------
 		
 		/**
@@ -55,9 +57,14 @@ package Manager
 		 * @desc	add a master
 		 * @param	master
 		 */
-		public function AddMaster( master:IMaster ):void
+		public function AddMaster( master:IMaster, actor:Boolean = false ):void
 		{
 			m_masterList.push( master );
+			
+			if ( actor == true )
+			{
+				m_actor = master;
+			}
 		}
 		
 		/**
@@ -86,6 +93,24 @@ package Manager
 			}
 			
 			return null;
+		}
+		
+		/**
+		 * @desc	judge if hit with actor of not
+		 * @param	mover
+		 * @return
+		 */
+		public function HitActor( mover:IMover ):Boolean
+		{
+			var act:IMover = m_actor.GetIMover();
+			var distance:Point = mover.GetPosition().subtract( act.GetPosition() );
+			
+			if ( distance.length < ( mover.Redius() + act.Redius() ) )
+			{
+				return true;
+			}
+			
+			return false;
 		}
 		
 		//------------------------------ private function ----------------------------------
