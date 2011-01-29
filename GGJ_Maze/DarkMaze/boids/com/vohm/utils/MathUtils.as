@@ -1,0 +1,1 @@
+﻿/** * MathUtils * Author: Andrew White <andrew@vohm.com>**/package com.vohm.utils {		public class MathUtils {		public static function constrain(n:Number, min:Number, max:Number):Number {			if (n < min) {				n = min;			}			else if (n > max) {				n = max;			}						return n;		}			}  }
