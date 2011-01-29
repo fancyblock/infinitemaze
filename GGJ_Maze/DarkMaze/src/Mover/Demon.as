@@ -1,8 +1,8 @@
 package Mover 
 {
 	import Define.GameDefine;
-	import flash.geom.Point;
 	import flash.filters.GlowFilter;
+	import flash.geom.Point;
 	
 	/**
 	 * ...

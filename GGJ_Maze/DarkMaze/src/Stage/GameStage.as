@@ -1,12 +1,12 @@
 package Stage 
 {
-	import Define.DirectionDef;
 	import Define.GameDefine;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.TimerEvent;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
@@ -21,7 +21,6 @@ package Stage
 	import Mover.HeroHolder;
 	import Mover.Human;
 	import Mover.HumanHolder;
-	import flash.events.TimerEvent;
 
 	/**
 	 * ...
@@ -91,7 +90,7 @@ package Stage
 			updateVisibleArea();
 			updateMapOffset();
 			updateUI();
-			
+			stateJudge();
 		}
 		
 		//-------------------------------- private function ---------------------------------
@@ -331,6 +330,12 @@ package Stage
 			m_txtFreeMan.text = GlobalWork.FreeManCnt.toString();
 			m_txtYourMan.text = GlobalWork.YourManCnt.toString();
 			m_txtEvilMan.text = GlobalWork.EvilManCnt.toString();
+		}
+		
+		//judge if win of lose
+		private function stateJudge():void
+		{
+			//
 		}
 		
 		//-------------------------------- callback function --------------------------------

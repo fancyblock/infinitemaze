@@ -5,7 +5,6 @@ package Mover
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.geom.Point;
-	import flash.globalization.NumberFormatter;
 	/**
 	 * ...
 	 * @author	Hejiabin

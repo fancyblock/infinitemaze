@@ -1,6 +1,5 @@
 package Stage 
 {
-	import com.pblabs.screens.BaseScreen;
 	import flash.text.TextField;
 	
 	/**

@@ -1,9 +1,9 @@
 package Maze
 {
+	import Define.DirectionDef;
 	import Define.GameDefine;
 	import flash.geom.Point;
 	import Mover.IMover;
-	import Define.DirectionDef;
 	
 	/**
 	 * @author	Hejiabin

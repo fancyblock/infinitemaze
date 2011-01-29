@@ -2,7 +2,6 @@ package Stage
 {
 	import caurina.transitions.Tweener;
 	import com.pblabs.engine.PBE;
-	import com.pblabs.engine.resource.SWFResource;
 	import com.pblabs.screens.ImageScreen;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;

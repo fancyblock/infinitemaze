@@ -1,7 +1,7 @@
 package Maze
 {
-	import flash.geom.Point;
 	import Define.DirectionDef;
+	import flash.geom.Point;
 	
 	/**
 	 * @author	Hejiabin

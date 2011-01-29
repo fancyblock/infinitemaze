@@ -1,7 +1,7 @@
 package Stage 
 {
-	import flash.events.MouseEvent;
 	import flash.display.SimpleButton;
+	import flash.events.MouseEvent;
 	
 	/**
 	 * ...

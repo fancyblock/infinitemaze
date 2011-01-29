@@ -1,10 +1,10 @@
 package Mover 
 {
+	import com.pblabs.engine.PBE;
 	import Define.GameDefine;
 	import Manager.MasterManager;
 	import Maze.ISpace;
 	import Mover.IMover;
-	import com.pblabs.engine.PBE;
 	/**
 	 * ...
 	 * @author	Hejiabin

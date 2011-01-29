@@ -1,12 +1,12 @@
 package
 {
+	import Define.DirectionDef;
 	import Define.GameDefine;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	import Maze.Cell;
-	import Define.DirectionDef;
 	import Maze.SubMaze;
 	
 	

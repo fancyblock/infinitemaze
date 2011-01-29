@@ -1,12 +1,12 @@
 ﻿package  
 {
 	import flash.display.Sprite;
-	import flash.system.System;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.utils.getTimer;
+	import flash.system.System;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
+	import flash.utils.getTimer;
 	
 	/**
 	 * ...
