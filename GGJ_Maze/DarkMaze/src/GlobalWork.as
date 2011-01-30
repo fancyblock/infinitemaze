@@ -9,6 +9,7 @@ package
 	{
 		public static var GameState:String = null;
 		
+		public static var HeroDie:Boolean = false;
 		public static var ResultInfo:String = null;
 		
 		public static var EvilCnt:int;

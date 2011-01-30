@@ -33,6 +33,9 @@ package Stage
 		
 		static private var HeroRegion:Rectangle = new Rectangle( 200, 200, 200, 200 );
 		
+		[Embed(source='../../assets/export.png')]
+		static private var PicExport:Class;
+		
 		//-------------------------------- private member -----------------------------------
 		
 		//ui
@@ -59,6 +62,8 @@ package Stage
 		
 		private var m_timer:Timer = null;
 		private var m_countdown:int = 0;
+		
+		private var m_exports:Array = null;
 		
 		//-------------------------------- public function ----------------------------------
 		
@@ -129,7 +134,7 @@ package Stage
 		//leave this stage
 		override protected function onLeave():void
 		{
-			m_gameContainer.removeChild( m_canva );
+			//m_gameContainer.removeChild( m_canva );
 		}
 		
 		//create the canva
@@ -235,6 +240,32 @@ package Stage
 			m_knowMap.alpha = 0.35;
 		}
 		
+		//create the export
+		private function createExport():void
+		{
+			m_exports = new Array();
+			
+			var portPos1:Point = new Point( int( Math.random() * 10 ), int( Math.random() * 10 ) );
+			var portPos2:Point = new Point( int( Math.random() * 10 ) + 10, int( Math.random() * 10 ) + 10 );
+			
+			m_exports.push( portPos1 );
+			m_exports.push( portPos2 );
+			
+			var exportFlag:Bitmap = new PicExport();
+			m_map.addChild( exportFlag );
+			exportFlag.x = portPos1.x * GameDefine.MAZE_GRID_SIZE + 3;
+			exportFlag.y = portPos1.y * GameDefine.MAZE_GRID_SIZE + 3;
+			exportFlag.width = 30;
+			exportFlag.height = 30;
+			
+			exportFlag = new PicExport();
+			m_map.addChild( exportFlag );
+			exportFlag.x = portPos2.x * GameDefine.MAZE_GRID_SIZE + 3;
+			exportFlag.y = portPos2.y * GameDefine.MAZE_GRID_SIZE + 3;
+			exportFlag.width = 30;
+			exportFlag.height = 30;
+		}
+		
 		//update the visible area
 		private function updateVisibleArea():void
 		{
@@ -309,6 +340,8 @@ package Stage
 			GlobalWork.GameState = GameDefine.GameState_Peace;
 			MoverHolderManager.Singleton.SetState( GameDefine.GameState_Peace );
 			
+			GlobalWork.HeroDie = false;
+			
 			GlobalWork.EvilCnt = GameDefine.DemonCount;
 			GlobalWork.FreeManCnt = GameDefine.HumanCount;
 			GlobalWork.YourManCnt = 0;
@@ -341,10 +374,38 @@ package Stage
 				GlobalWork.ResultInfo = "You Win";
 				this.FadeOutToScreen( WindowEnum.EndScreen );
 			}
-			else
+			else if( GlobalWork.HeroDie == true )
 			{
-				//[unfinished]
+				GlobalWork.ResultInfo = "Demon catch you";
+				this.FadeOutToScreen( WindowEnum.EndScreen );
 			}
+			else if( arriveExport() == true )
+			{
+				GlobalWork.ResultInfo = "You Escape";
+				this.FadeOutToScreen( WindowEnum.EndScreen );
+			}
+		}
+		
+		//judge if the hero arrive the export
+		private function arriveExport():Boolean
+		{
+			if ( m_exports == null ) return false;
+			
+			var heroPosX:int = m_hero.x / GameDefine.MAZE_GRID_SIZE;
+			var heroPosY:int = m_hero.y / GameDefine.MAZE_GRID_SIZE;
+			
+			var export:Point;
+			for ( var i:int = 0; i < m_exports.length; i++ )
+			{
+				export = m_exports[i] as Point;
+				
+				if ( export.x == heroPosX && export.y == heroPosY )
+				{
+					return true;
+				}
+			}
+			
+			return false;
 		}
 		
 		//-------------------------------- callback function --------------------------------
@@ -365,7 +426,8 @@ package Stage
 			GlobalWork.GameState = GameDefine.GameState_Fight;
 			MoverHolderManager.Singleton.SetState( GameDefine.GameState_Fight );
 			
-			//[unfinished]
+			//create the export
+			createExport();
 		}
 		
 	}

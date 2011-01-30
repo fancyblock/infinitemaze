@@ -113,6 +113,15 @@ package Manager
 			return false;
 		}
 		
+		/**
+		 * @desc	return the hero
+		 * @return
+		 */
+		public function GetActor():IMaster
+		{
+			return m_actor;
+		}
+		
 		//------------------------------ private function ----------------------------------
 		
 		//initial the singleton

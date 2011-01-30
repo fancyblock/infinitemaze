@@ -2,9 +2,13 @@ package Mover
 {
 	import com.pblabs.engine.PBE;
 	import Define.GameDefine;
+	import flash.geom.Point;
 	import Manager.MasterManager;
 	import Maze.ISpace;
 	import Mover.IMover;
+	import Define.DirectionDef;
+	import Define.AnimationDef;
+	
 	/**
 	 * ...
 	 * @author	Hejiabin
@@ -23,6 +27,8 @@ package Mover
 		
 		private var m_master:IMaster = null;
 		
+		private var m_curDir:int = -1;
+		
 		//-------------------------------- public function --------------------------------
 		
 		/**
@@ -30,7 +36,6 @@ package Mover
 		 */
 		public function HumanHolder() 
 		{
-			
 		}
 		
 		/* INTERFACE Mover.IMoverController */
@@ -47,6 +52,39 @@ package Mover
 		
 		public function Move(dir:int, distance:Number):Boolean 
 		{
+			var curPos:Point = m_mover.GetPosition();
+			var nextPos:Point = new Point( curPos.x, curPos.y );
+			
+			switch( dir )
+			{
+			case DirectionDef.DIR_0:
+				nextPos.y -= distance;
+				m_mover.PlayAni( AnimationDef.Ani_Dir0 );
+				break;
+			case DirectionDef.DIR_3:
+				nextPos.x += distance;
+				m_mover.PlayAni( AnimationDef.Ani_Dir3 );
+				break;
+			case DirectionDef.DIR_6:
+				nextPos.y += distance;
+				m_mover.PlayAni( AnimationDef.Ani_Dir6 );
+				break;
+			case DirectionDef.DIR_9:
+				nextPos.x -= distance;
+				m_mover.PlayAni( AnimationDef.Ani_Dir9 );
+				break;
+			default:
+				break;
+			}
+			
+			m_mover.SetNextPosition( nextPos );
+			if ( m_space.IsHitWall( m_mover ) == true )
+			{
+				return false;
+			}
+			
+			m_mover.Update();
+			
 			return true;
 		}
 		
@@ -66,7 +104,10 @@ package Mover
 				follow( master );
 			}
 			
-			hangOut();
+			if ( m_master == null )
+			{
+				hangOut();
+			}
 		}
 		
 		public function SetState( state:String ):void
@@ -82,7 +123,10 @@ package Mover
 			master.AddSlave( m_mover );
 			m_mover.filters = master.MasterFlag();
 			
-			PBE.soundManager.play( "../assets/Sound/SE/join.mp3", "SE" );
+			if ( master.MasterType() == GameDefine.MasterHero )
+			{
+				PBE.soundManager.play( "../assets/Sound/SE/join.mp3", "SE" );
+			}
 			
 			if ( master.MasterType() == GameDefine.MasterEvil )
 			{
@@ -113,7 +157,42 @@ package Mover
 		//hang out
 		private function hangOut():void
 		{
-			//[unfinished]
+			if ( m_curDir == -1 )
+			{
+				m_curDir = getRandDir();
+			}
+			
+			if ( this.Move( m_curDir, GameDefine.EvilVelocity ) == false )
+			{
+				m_curDir = getRandDir();
+			}
+		}
+		
+		//return a random direction
+		private function getRandDir():int
+		{
+			var dir:int;
+			
+			switch( int( Math.random() * 4 ) )
+			{
+			case 1:
+				dir = DirectionDef.DIR_0;
+				break;
+			case 2:
+				dir = DirectionDef.DIR_3;
+				break;
+			case 3:
+				dir = DirectionDef.DIR_6;
+				break;
+			case 4:
+				dir = DirectionDef.DIR_9;
+				break;
+			default:
+				dir = DirectionDef.DIR_0;
+				break;
+			}
+			
+			return dir;
 		}
 		
 		//-------------------------------- callback function -------------------------------

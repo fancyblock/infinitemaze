@@ -20,11 +20,12 @@ package Define
 		public static var MazeWallBold:Number = 2;
 		
 		public static var HeroVelocity:Number = 2;
+		public static var EvilVelocity:Number = 1.8;
 		
 		public static var HumanCount:int = 20;
 		public static var DemonCount:int = 10;
 		
-		public static var CountdownSec:int = 100;
+		public static var CountdownSec:int = 60;
 	}
 
 }

@@ -53,6 +53,8 @@ package Stage
 		//click start game
 		private function _onStart( evt:MouseEvent ):void
 		{
+//			GlobalWork.ResultInfo = "You Escape";
+//			FadeOutToScreen( WindowEnum.EndScreen );
 			FadeOutToScreen( WindowEnum.GameScreen );
 		}
 		

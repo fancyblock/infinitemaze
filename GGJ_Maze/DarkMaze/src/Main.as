@@ -38,7 +38,7 @@ package
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
 			//[for test]
-			this.stage.addChild( new GameMonitor() );
+		//	this.stage.addChild( new GameMonitor() );
 			
 			PBE.startup( this );
 			
