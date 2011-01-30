@@ -65,6 +65,8 @@ package Mover
 				m_master = master;
 				follow( master );
 			}
+			
+			hangOut();
 		}
 		
 		public function SetState( state:String ):void
@@ -106,6 +108,12 @@ package Mover
 			{
 				GlobalWork.YourManCnt --;
 			}
+		}
+		
+		//hang out
+		private function hangOut():void
+		{
+			//[unfinished]
 		}
 		
 		//-------------------------------- callback function -------------------------------

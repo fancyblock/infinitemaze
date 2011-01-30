@@ -335,7 +335,16 @@ package Stage
 		//judge if win of lose
 		private function stateJudge():void
 		{
-			//
+			//win
+			if ( GlobalWork.EvilCnt == 0 )
+			{
+				GlobalWork.ResultInfo = "You Win";
+				this.FadeOutToScreen( WindowEnum.EndScreen );
+			}
+			else
+			{
+				//[unfinished]
+			}
 		}
 		
 		//-------------------------------- callback function --------------------------------

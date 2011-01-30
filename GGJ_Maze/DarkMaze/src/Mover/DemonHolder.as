@@ -54,6 +54,7 @@ package Mover
 				{
 					//[unfinished]
 				}
+				hangOut();
 				break;
 			default:
 				break;
@@ -61,6 +62,12 @@ package Mover
 		}
 		
 		//-------------------------------- private function ---------------------------------
+		
+		//hang out
+		private function hangOut():void
+		{
+			//[unfinished]
+		}
 		
 		//-------------------------------- callback function --------------------------------
 		
