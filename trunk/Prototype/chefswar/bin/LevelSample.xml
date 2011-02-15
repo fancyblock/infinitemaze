@@ -1,0 +1,21 @@
+<Level>
+	<LevelSetting>
+		<LevelName>levelName</LevelName>
+		<DescText>Balabala</DescText>
+		<!-- Other settings, maybe background picture, role's position and so on -->
+	</LevelSetting>
+	<SoundInfo>
+		<SoundName>TestBGM.mp3</SoundName>	<!-- sound name or sound id -->
+		<BPM>60</BPM>				<!-- sound bpm -->
+		<Offset>1200</Offset>			<!-- sound start offset -->
+	</SoundInfo>
+	<BeatInfo>
+		<Beat>
+			<appearBeat>5</appearBeat>	<!-- the time of flying object appear -->
+			<hitBeat>10</hitBeat>		<!-- the time of flying object be hitted -->
+			<hitType>1</hitType>		<!-- flying object type --> 
+		</Beat>
+		<!-- all the beats ... -->
+	</BeatInfo>
+</Level>
+
