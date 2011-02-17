@@ -6,7 +6,7 @@ package Interface
 	 * ...
 	 * @author Hejiabin
 	 */
-	public interface IBeatGenerator extends IFuncComponent
+	public interface IBeatGenerator extends IUpdateable
 	{
 		function SetBeatsBase( beatsBase:ISoundBeatsBase ):void;
 		

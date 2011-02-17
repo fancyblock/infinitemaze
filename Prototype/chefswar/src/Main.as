@@ -12,7 +12,7 @@ package
 	 * ...
 	 * @author Hejiabin
 	 */
-	[SWF(width="405", height="802", backgroundColor="0x000000")]
+	[SWF(width="802", height="405", backgroundColor="0x000000")]
 	public class Main extends Sprite 
 	{
 		//-------------------------------- static member ------------------------------------
