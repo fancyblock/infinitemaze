@@ -3,6 +3,7 @@ package LogicComponent
 	import Interface.ICenterControl;
 	import Interface.IFuncComponent;
 	import Interface.ISoundPlayer;
+	import Interface.IUpdateable;
 	
 	/**
 	 * ...
@@ -31,7 +32,12 @@ package LogicComponent
 			//[unfinished]
 		}
 		
-		public function AddComponent(comp:IFuncComponent):void 
+		public function AddComponent(comp:IUpdateable):void 
+		{
+			//[unfinished]
+		}
+		
+		public function ClearAllComponents():void
 		{
 			//[unfinished]
 		}

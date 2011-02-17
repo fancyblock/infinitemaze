@@ -9,7 +9,9 @@ package Interface
 	{
 		function SetSoundPlayer( player:ISoundPlayer ):void;
 		
-		function AddComponent( comp:IFuncComponent ):void;
+		function AddComponent( comp:IUpdateable ):void;
+		
+		function ClearAllComponents():void;
 		
 		function Start():void;
 		
