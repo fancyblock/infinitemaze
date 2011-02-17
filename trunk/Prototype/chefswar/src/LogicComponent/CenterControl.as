@@ -1,7 +1,6 @@
 package LogicComponent 
 {
 	import Interface.ICenterControl;
-	import Interface.IFuncComponent;
 	import Interface.ISoundPlayer;
 	import Interface.IUpdateable;
 	
