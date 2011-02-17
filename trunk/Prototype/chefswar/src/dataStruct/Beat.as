@@ -1,5 +1,6 @@
 package dataStruct 
 {
+	import flash.geom.Point;
 	/**
 	 * ...
 	 * @author Hejiabin
@@ -12,6 +13,7 @@ package dataStruct
 		
 		public var _startTime:Number = 0;
 		public var _endTime:Number = 0;
+		public var _dropPoint:Point = new Point();
 		
 		public var _flag:uint = 0;
 	}

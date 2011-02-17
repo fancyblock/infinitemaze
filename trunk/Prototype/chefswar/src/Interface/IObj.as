@@ -5,9 +5,9 @@ package Interface
 	 * ...
 	 * @author Hejiabin
 	 */
-	public interface IFuncComponent 
+	public interface IObj extends IUpdateable
 	{
-		function Update( time:Number ):void;
+		function GetHost():ISpace;
 	}
 	
 }

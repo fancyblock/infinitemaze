@@ -77,6 +77,8 @@ package Stages
 			beatGen.SetCanva( m_canva );
 			
 			m_centerControl.AddComponent( beatGen );
+			
+			//initial the space
 		}
 		
 		//start the game
