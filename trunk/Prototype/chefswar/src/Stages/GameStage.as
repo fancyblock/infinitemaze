@@ -1,5 +1,6 @@
 package Stages 
 {
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import Interface.IBeatGenerator;
 	import Interface.ICenterControl;
@@ -13,10 +14,11 @@ package Stages
 	public class GameStage extends BaseUIScreen 
 	{
 		//-------------------------------- static member ------------------------------------
-				
+			
 		//-------------------------------- private member -----------------------------------
 		
 		private var m_canva:Sprite = null;
+		private var m_fightAni:MovieClip = null;
 		private var m_centerControl:ICenterControl = null;
 		
 		//-------------------------------- public function ----------------------------------
@@ -31,15 +33,6 @@ package Stages
 			this.embedUI( new GameStageUI );
 		}
 		
-		/**
-		 * @desc	frame func
-		 * @param	delta
-		 */
-		override public function onFrame (delta:Number) : void
-		{
-			m_centerControl.Update();
-		}
-		
 		//-------------------------------- private function ---------------------------------
 		
 		//initial the ui
@@ -48,6 +41,7 @@ package Stages
 			this.addChild( UI_ROOT );
 			
 			m_canva = UI_ROOT.getChildByName( "mcCanva" ) as Sprite;
+			m_fightAni = UI_ROOT.getChildByName( "mcFightAni" ) as MovieClip;
 		}
 		
 		//enter callback
@@ -57,6 +51,14 @@ package Stages
 			
 			createLevel();
 			gameStart();
+			
+			m_fightAni.play();
+		}
+		
+		//frame callback
+		override protected function onFrameTick( delta:Number ):void
+		{
+			m_centerControl.Update();
 		}
 		
 		//leave callback
