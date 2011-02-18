@@ -28,18 +28,6 @@ package Stages
 			this.embedUI( new LoadStageUI );
 		}
 		
-		/**
-		 * @desc	frame func
-		 * @param	delta
-		 */
-		override public function onFrame (delta:Number) : void
-		{
-			if ( m_soundLoader.IsLoadComplete() == true )
-			{
-				this.FadeOutToScreen( StageEnum.eGameStage );
-			}
-		}
-		
 		//-------------------------------- private function ---------------------------------
 		
 		//initial the ui
@@ -63,6 +51,15 @@ package Stages
 			m_soundLoader.SetSoundPlayer( GlobalWork.g_soundPlayer );
 			m_soundLoader.LoadSound( GlobalWork.g_curSound );
 			
+		}
+		
+		//frame callback
+		override protected function onFrameTick( delta:Number ):void
+		{
+			if ( m_soundLoader.IsLoadComplete() == true )
+			{
+				this.FadeOutToScreen( StageEnum.eGameStage );
+			}
 		}
 		
 		//leave callback

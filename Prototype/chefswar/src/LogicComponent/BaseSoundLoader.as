@@ -47,7 +47,7 @@ package LogicComponent
 		{
 			//[unfinished]
 			
-			return false;
+			return true;
 		}
 		
 		public function GetLoadProgress():Number 

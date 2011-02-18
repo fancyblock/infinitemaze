@@ -22,6 +22,7 @@ package Stages
 		private var m_uiRoot:MovieClip = null;
 		private var m_nextScreen:String = null;
 		private var m_uiBGM:String = null;
+		private var m_isRunning:Boolean = false;
 		
 		//-------------------------------- public function ----------------------------------
 		
@@ -47,6 +48,19 @@ package Stages
 			if ( m_uiBGM != null ) PBE.soundManager.play( m_uiBGM, "BGM", 0, 100 );
 			
 			onEnter();
+			m_isRunning = true;
+		}
+		
+		/**
+		 * @desc	frame func
+		 * @param	delta
+		 */
+		override public function onFrame (delta:Number) : void
+		{
+			if ( m_isRunning == true )
+			{
+				this.onFrameTick( delta );
+			}
 		}
 		
 		/**
@@ -130,6 +144,7 @@ package Stages
 		 */
 		protected function FadeOutToScreen( nextScreen:String ):void
 		{
+			m_isRunning = false;
 			onLeave();
 			
 			enableControl( false );
@@ -145,6 +160,7 @@ package Stages
 		 */
 		protected function GotoScreen( nextScreen:String ):void
 		{
+			m_isRunning = false;
 			onLeave();
 			
 			enableControl( false );
@@ -158,7 +174,10 @@ package Stages
 		protected function initialUI():void {}
 		
 		//enter callback
-		protected function onEnter():void {}
+		protected function onEnter():void { }
+		
+		//frame callback
+		protected function onFrameTick( delta:Number ):void { }
 		
 		//leave callback
 		protected function onLeave():void {}
