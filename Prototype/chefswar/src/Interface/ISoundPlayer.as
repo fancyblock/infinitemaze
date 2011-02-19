@@ -1,5 +1,6 @@
 package Interface 
 {
+	import flash.media.Sound;
 	
 	/**
 	 * ...
@@ -7,7 +8,7 @@ package Interface
 	 */
 	public interface ISoundPlayer 
 	{
-		function SetSound( song:String ):void;
+		function SetSound( song:Sound ):void;
 		
 		function Play():void;
 		

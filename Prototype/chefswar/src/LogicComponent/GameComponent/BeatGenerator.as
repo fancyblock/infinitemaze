@@ -1,8 +1,8 @@
 package LogicComponent.GameComponent 
 {
-	import flash.display.Sprite;
 	import Interface.IBeatGenerator;
 	import Interface.ISoundBeatsBase;
+	import Interface.ISpace;
 	
 	/**
 	 * ...
@@ -16,7 +16,7 @@ package LogicComponent.GameComponent
 		//-------------------------------- private member -----------------------------------
 		
 		private var m_beatsBase:ISoundBeatsBase = null;
-		private var m_canva:Sprite = null;
+		private var m_space:ISpace = null;
 		
 		//-------------------------------- public function ----------------------------------
 		
@@ -35,13 +35,22 @@ package LogicComponent.GameComponent
 			m_beatsBase = beatsBase;
 		}
 		
-		public function SetCanva(canva:Sprite):void 
+		public function SetSpace( space:ISpace ):void
 		{
-			m_canva = canva;
+			m_space = space;
 		}
 		
 		public function Update(time:Number):void 
 		{
+			var curBeats:Array  = m_beatsBase.GetNewBeatsBefore( time );
+			
+			var len:int = curBeats.length;
+			
+			if ( len > 0 )
+			{
+				trace( curBeats[0]._type );
+			}
+			
 			//[unfinished]
 		}
 		

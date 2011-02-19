@@ -3,6 +3,7 @@ package
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import com.pblabs.engine.PBE;
+	import Stages.GameOverStage;
 	import Stages.GameStage;
 	import Stages.SoundLoadStage;
 	import Stages.StageEnum;
@@ -43,6 +44,7 @@ package
 			PBE.screenManager.registerScreen( StageEnum.eWelcomeStage, new WelcomeStage() );
 			PBE.screenManager.registerScreen( StageEnum.eSoundLoadStage, new SoundLoadStage() );
 			PBE.screenManager.registerScreen( StageEnum.eGameStage, new GameStage() );
+			PBE.screenManager.registerScreen( StageEnum.eGameOverStage, new GameOverStage() );
 			
 			PBE.screenManager.push( StageEnum.eWelcomeStage );
 			
