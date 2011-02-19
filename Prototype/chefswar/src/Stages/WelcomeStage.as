@@ -36,16 +36,6 @@ package Stages
 			this.addEventListener( MouseEvent.CLICK, _onClk );
 		}
 		
-		//enter callback
-		override protected function onEnter():void 
-		{
-		}
-		
-		//leave callback
-		override protected function onLeave():void 
-		{
-		}
-		
 		//-------------------------------- callback function --------------------------------
 		
 		private function _onClk( evt:MouseEvent ):void
@@ -54,7 +44,7 @@ package Stages
 			
 			GlobalWork.g_curSound = "LevelSample.xml";		//[temp]
 			
-			PBE.screenManager.push( StageEnum.eSoundLoadStage );
+			this.FadeOutToScreen( StageEnum.eSoundLoadStage );
 		}
 		
 	}

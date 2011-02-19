@@ -30,16 +30,6 @@ package Stages
 			this.addChild( UI_ROOT );
 		}
 		
-		//enter callback
-		override protected function onEnter():void 
-		{
-		}
-		
-		//leave callback
-		override protected function onLeave():void 
-		{
-		}
-		
 		//-------------------------------- callback function --------------------------------
 		
 		

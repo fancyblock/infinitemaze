@@ -1,8 +1,9 @@
 package 
 {
+	import com.pblabs.engine.PBE;
+	import com.pblabs.rendering2D.ui.SceneView;
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import com.pblabs.engine.PBE;
 	import Stages.GameOverStage;
 	import Stages.GameStage;
 	import Stages.SoundLoadStage;
@@ -13,7 +14,7 @@ package
 	 * ...
 	 * @author Hejiabin
 	 */
-	[SWF(width="802", height="405", backgroundColor="0x000000")]
+	[SWF(width="480", height="320", backgroundColor="0x555555")]
 	public class Main extends Sprite 
 	{
 		//-------------------------------- static member ------------------------------------
@@ -41,6 +42,13 @@ package
 			
 			PBE.startup( this );
 			
+			//initial the sceneView
+			var sceneView:SceneView = new SceneView();
+			sceneView.width = SystemParameter.SCREEN_WIDTH;
+			sceneView.height = SystemParameter.SCREEN_HEIGHT;
+			PBE.initializeScene( sceneView );
+			
+			//initial all the screen
 			PBE.screenManager.registerScreen( StageEnum.eWelcomeStage, new WelcomeStage() );
 			PBE.screenManager.registerScreen( StageEnum.eSoundLoadStage, new SoundLoadStage() );
 			PBE.screenManager.registerScreen( StageEnum.eGameStage, new GameStage() );

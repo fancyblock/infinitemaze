@@ -62,11 +62,6 @@ package Stages
 			}
 		}
 		
-		//leave callback
-		override protected function onLeave():void 
-		{
-		}
-		
 		//-------------------------------- callback function --------------------------------
 		
 	}
