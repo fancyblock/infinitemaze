@@ -10,7 +10,7 @@ package Interface
 	{
 		function SetBeatsBase( beatsBase:ISoundBeatsBase ):void;
 		
-		function SetCanva( canva:Sprite ):void;
+		function SetSpace( space:ISpace ):void;
 	}
 	
 }

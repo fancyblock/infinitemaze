@@ -1,29 +1,25 @@
 package Stages 
 {
-	import flash.events.Event;
-	import flash.events.MouseEvent;
-	import com.pblabs.engine.PBE;
-	
 	/**
 	 * ...
 	 * @author Hejiabin
 	 */
-	public class WelcomeStage extends BaseUIScreen 
+	public class GameOverStage extends BaseUIScreen 
 	{
 		//-------------------------------- static member ------------------------------------
-				
+		
 		//-------------------------------- private member -----------------------------------
 		
 		//-------------------------------- public function ----------------------------------
 		
 		/**
-		 * @desc	constructor of WelcomeStage
+		 * @desc	constructor of GameOverStage
 		 */
-		public function WelcomeStage() 
+		public function GameOverStage() 
 		{
 			super();
 			
-			this.embedUI( new WelcomeStageUI );
+			this.embedUI( new GameOverUI );
 		}
 		
 		//-------------------------------- private function ---------------------------------
@@ -32,8 +28,6 @@ package Stages
 		override protected function initialUI():void 
 		{
 			this.addChild( UI_ROOT );
-			
-			this.addEventListener( MouseEvent.CLICK, _onClk );
 		}
 		
 		//enter callback
@@ -48,14 +42,6 @@ package Stages
 		
 		//-------------------------------- callback function --------------------------------
 		
-		private function _onClk( evt:MouseEvent ):void
-		{
-			this.removeEventListener( MouseEvent.CLICK, _onClk );
-			
-			GlobalWork.g_curSound = "LevelSample.xml";		//[temp]
-			
-			PBE.screenManager.push( StageEnum.eSoundLoadStage );
-		}
 		
 	}
 

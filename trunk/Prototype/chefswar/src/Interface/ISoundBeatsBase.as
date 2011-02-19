@@ -12,7 +12,7 @@ package Interface
 		
 		function SoreBeats():void;
 		
-		function Clear():void;
+		function Reset():void;
 		
 		function GetBeatsBetween( timeSpot1:Number, timeSpot2:Number ):Array;
 		

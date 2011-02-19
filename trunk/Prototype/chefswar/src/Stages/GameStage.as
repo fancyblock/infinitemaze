@@ -4,8 +4,10 @@ package Stages
 	import flash.display.Sprite;
 	import Interface.IBeatGenerator;
 	import Interface.ICenterControl;
+	import Interface.ISpace;
 	import LogicComponent.CenterControl;
 	import LogicComponent.GameComponent.BeatGenerator;
+	import LogicComponent.SpaceComponent;
 	
 	/**
 	 * ...
@@ -63,7 +65,7 @@ package Stages
 			//level over
 			if ( m_centerControl.IsStopped() == true )
 			{
-				//[unfinished]
+				this.FadeOutToScreen( StageEnum.eGameOverStage );
 			}
 		}
 		
@@ -79,14 +81,18 @@ package Stages
 			
 			m_centerControl.SetSoundPlayer( GlobalWork.g_soundPlayer );
 			
+			//initial space
+			var space:ISpace = new SpaceComponent();
+			space.SetSize( GameSettings.SPACE_SIZE_WID, GameSettings.SPACE_SIZE_HEI, GameSettings.SPACE_SIZE_LEN );
+			m_centerControl.AddComponent( space );
+			
 			//initial beat generator component
 			var beatGen:IBeatGenerator = new BeatGenerator();
 			beatGen.SetBeatsBase( GlobalWork.g_soundBeatsBase );
-			beatGen.SetCanva( m_canva );
-			
+			beatGen.SetSpace( space );
 			m_centerControl.AddComponent( beatGen );
 			
-			//initial the space
+			//[unfinished]
 		}
 		
 		//start the game
