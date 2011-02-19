@@ -59,6 +59,12 @@ package Stages
 		override protected function onFrameTick( delta:Number ):void
 		{
 			m_centerControl.Update();
+			
+			//level over
+			if ( m_centerControl.IsStopped() == true )
+			{
+				//[unfinished]
+			}
 		}
 		
 		//leave callback
