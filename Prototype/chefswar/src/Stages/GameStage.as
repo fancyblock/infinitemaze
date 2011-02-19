@@ -65,6 +65,8 @@ package Stages
 			//level over
 			if ( m_centerControl.IsStopped() == true )
 			{
+				m_centerControl.ClearAllComponents();
+				
 				this.FadeOutToScreen( StageEnum.eGameOverStage );
 			}
 		}
