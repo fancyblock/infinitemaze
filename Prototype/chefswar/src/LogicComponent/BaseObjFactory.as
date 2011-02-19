@@ -1,7 +1,7 @@
 package LogicComponent 
 {
+	import com.pblabs.engine.entity.IEntity;
 	import dataStruct.Beat;
-	import Interface.IObj;
 	import Interface.IObjFactory;
 	
 	/**
@@ -26,7 +26,7 @@ package LogicComponent
 		
 		/* INTERFACE Interface.IObjFactory */
 		
-		public function CreateObj(beat:Beat):IObj 
+		public function CreateObj(beat:Beat):IEntity 
 		{
 			//[unfinished]
 			

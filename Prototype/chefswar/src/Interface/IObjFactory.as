@@ -1,5 +1,6 @@
 package Interface 
 {
+	import com.pblabs.engine.entity.IEntity;
 	import dataStruct.Beat;
 	
 	/**
@@ -8,7 +9,7 @@ package Interface
 	 */
 	public interface IObjFactory 
 	{
-		function CreateObj( beat:Beat ):IObj;
+		function CreateObj( beat:Beat ):IEntity;
 	}
 	
 }

@@ -1,13 +1,12 @@
 package Stages 
 {
+	import com.pblabs.engine.entity.IEntity;
+	import com.pblabs.engine.entity.PropertyReference;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
-	import Interface.IBeatGenerator;
-	import Interface.ICenterControl;
-	import Interface.ISpace;
-	import LogicComponent.CenterControl;
-	import LogicComponent.GameComponent.BeatGenerator;
-	import LogicComponent.SpaceComponent;
+	import com.pblabs.engine.PBE;
+	import LogicComponent.GameComponent.BeatGeneratorComponent;
+	import LogicComponent.GameComponent.CenterControlComponent;
 	
 	/**
 	 * ...
@@ -20,7 +19,7 @@ package Stages
 		//-------------------------------- private member -----------------------------------
 		
 		private var m_fightAni:MovieClip = null;
-		private var m_centerControl:ICenterControl = null;
+		private var m_coreLogic:IEntity = null;
 		
 		//-------------------------------- public function ----------------------------------
 		
@@ -58,12 +57,10 @@ package Stages
 		//frame callback
 		override protected function onFrameTick( delta:Number ):void
 		{
-			m_centerControl.Update();
-			
 			//level over
-			if ( m_centerControl.IsStopped() == true )
+			if ( ( m_coreLogic.lookupComponentByName( "CenterControl" ) as CenterControlComponent ).IsStopped() == true )
 			{
-				m_centerControl.ClearAllComponents();
+				m_coreLogic.destroy();
 				
 				this.FadeOutToScreen( StageEnum.eGameOverStage );
 			}
@@ -77,28 +74,29 @@ package Stages
 		//create the level
 		private function createLevel():void
 		{
-			m_centerControl = new CenterControl();
+			//allocate an entity
+			m_coreLogic = PBE.allocateEntity();
 			
-			m_centerControl.SetSoundPlayer( GlobalWork.g_soundPlayer );
-			
-			//initial space
-			var space:ISpace = new SpaceComponent();
-			space.SetSize( GameSettings.SPACE_SIZE_WID, GameSettings.SPACE_SIZE_HEI, GameSettings.SPACE_SIZE_LEN );
-			m_centerControl.AddComponent( space );
+			//add CenterControlComponent
+			var centerControl:CenterControlComponent = new CenterControlComponent();
+			centerControl.SetSoundPlayer( GlobalWork.g_soundPlayer );
+			m_coreLogic.addComponent( centerControl, "CenterControl" );
 			
 			//initial beat generator component
-			var beatGen:IBeatGenerator = new BeatGenerator();
+			var beatGen:BeatGeneratorComponent = new BeatGeneratorComponent();
 			beatGen.SetBeatsBase( GlobalWork.g_soundBeatsBase );
-			beatGen.SetSpace( space );
-			m_centerControl.AddComponent( beatGen );
+			beatGen.CUR_TIME = new PropertyReference( "@CenterControl.CUR_TIME" );
+			m_coreLogic.addComponent( beatGen, "BeatGenerator" );
 			
 			//[unfinished]
+			
+			m_coreLogic.initialize( "GameLogic" );
 		}
 		
 		//start the game
 		private function gameStart():void
 		{
-			m_centerControl.Start();
+			( m_coreLogic.lookupComponentByName( "CenterControl" ) as CenterControlComponent ).Start();
 		}
 		
 		//-------------------------------- callback function --------------------------------

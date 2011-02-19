@@ -4,6 +4,7 @@ package Stages
 	import LogicComponent.BaseSoundBeatsBase;
 	import LogicComponent.BaseSoundLoader;
 	import LogicComponent.BaseSoundPlayer;
+	import Utility.GameCommand;
 	/**
 	 * ...
 	 * @author Hejiabin
@@ -56,9 +57,12 @@ package Stages
 		//frame callback
 		override protected function onFrameTick( delta:Number ):void
 		{
-			if ( m_soundLoader.IsLoadComplete() == true )
+			if ( m_soundLoader!= null && m_soundLoader.IsLoadComplete() == true )
 			{
-				this.FadeOutToScreen( StageEnum.eGameStage );
+				var cmd:GameCommand = new GameCommand( this, this.FadeOutToScreen, [StageEnum.eGameStage], 1000 );
+				cmd.DoCommand();
+				
+				m_soundLoader = null;
 			}
 		}
 		
