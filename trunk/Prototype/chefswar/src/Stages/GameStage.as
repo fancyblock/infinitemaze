@@ -19,7 +19,6 @@ package Stages
 			
 		//-------------------------------- private member -----------------------------------
 		
-		private var m_canva:Sprite = null;
 		private var m_fightAni:MovieClip = null;
 		private var m_centerControl:ICenterControl = null;
 		
@@ -42,7 +41,6 @@ package Stages
 		{
 			this.addChild( UI_ROOT );
 			
-			m_canva = UI_ROOT.getChildByName( "mcCanva" ) as Sprite;
 			m_fightAni = UI_ROOT.getChildByName( "mcFightAni" ) as MovieClip;
 		}
 		
