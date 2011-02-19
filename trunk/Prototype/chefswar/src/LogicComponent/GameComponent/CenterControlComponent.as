@@ -2,7 +2,6 @@ package LogicComponent.GameComponent
 {
 	import com.pblabs.engine.components.TickedComponent;
 	import Interface.ISoundPlayer;
-	import Interface.IUpdateable;
 	
 	/**
 	 * ...
