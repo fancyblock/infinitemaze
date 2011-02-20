@@ -9,7 +9,7 @@ package dataStruct
 	{
 		public var _startPos:int = 0;
 		public var _endPos:int = 0;
-		public var _type:int = 0;
+		public var _type:String = null;
 		public var _dropPoint:int = 0;
 		
 		public var _startTime:Number = 0;

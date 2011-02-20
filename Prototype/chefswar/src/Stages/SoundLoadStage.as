@@ -1,5 +1,8 @@
 package Stages 
 {
+	import dataStruct.LevelInfo;
+	import dataStruct.Point3D;
+	import flash.geom.Point;
 	import Interface.ISoundLoader;
 	import LogicComponent.BaseSoundBeatsBase;
 	import LogicComponent.BaseSoundLoader;
@@ -12,7 +15,7 @@ package Stages
 	public class SoundLoadStage extends BaseUIScreen 
 	{
 		//-------------------------------- static member ------------------------------------
-				
+		
 		//-------------------------------- private member -----------------------------------
 		
 		private var m_soundLoader:ISoundLoader = null;
@@ -46,12 +49,17 @@ package Stages
 			m_soundLoader = new BaseSoundLoader();
 			GlobalWork.g_soundPlayer = new BaseSoundPlayer();
 			GlobalWork.g_soundBeatsBase = new BaseSoundBeatsBase();
+			GlobalWork.g_levelInfo = new LevelInfo();
 			
 			//load the sound
 			m_soundLoader.SetBeatsBase( GlobalWork.g_soundBeatsBase );
 			m_soundLoader.SetSoundPlayer( GlobalWork.g_soundPlayer );
 			m_soundLoader.LoadSound( GlobalWork.g_curSound );
 			
+			//set the level	[temp]
+			GlobalWork.g_levelInfo.SPAZE_SIZE = new Point3D( 480, 320, 800 );
+			GlobalWork.g_levelInfo.INIT_SPOT = new Point3D( 130, -120, 800 );
+			GlobalWork.g_levelInfo.DEST_SPOT = [new Point3D( -130, 120, 0 ), new Point3D( -130, 120, 0 ), new Point3D( -130, 120, 0 )];
 		}
 		
 		//frame callback
