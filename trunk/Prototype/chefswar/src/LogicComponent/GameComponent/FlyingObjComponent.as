@@ -2,9 +2,11 @@ package LogicComponent.GameComponent
 {
 	import com.pblabs.engine.components.TickedComponent;
 	import com.pblabs.engine.entity.PropertyReference;
+	import dataStruct.ActionInfo;
 	import dataStruct.Beat;
 	import dataStruct.Point3D;
 	import Enums.BeatFlag;
+	import com.pblabs.engine.PBE;
 	
 	/**
 	 * ...
@@ -26,6 +28,8 @@ package LogicComponent.GameComponent
 		private var m_beat:Beat = null;
 		private var m_speed:Point3D = null;
 		private var m_position:Point3D = null;
+		
+		private var m_gestureComponent:GestureRecoComponent = null;
 		
 		//-------------------------------- public function ----------------------------------
 		
@@ -58,22 +62,40 @@ package LogicComponent.GameComponent
 			//set the position
 			owner.setProperty( PositionRef, m_position );
 			
-			//if the object with in the hit range
-			if ( m_position._z < GlobalWork.g_gameSetting.HitRange )
-			{
-				//[unfinished]
-			}
-			
 			//if the object out of the space, destroy it
 			if ( m_position._z < 0 )
 			{
 				if ( m_beat._flag == BeatFlag.eFlyingBeat )
 				{
 					//[unfinished]	play an animation on this position
+					
+					trace( "the flying object out of the space" );
 				}
 				
 				this.owner.destroy();
 			}
+			else
+			//if the object with in the hit range
+			if ( m_position._z < GlobalWork.g_gameSetting.HitRange )
+			{
+				var curGest:ActionInfo = m_gestureComponent.GetGesture();
+				
+				if ( curGest != null )
+				{
+					//hitted
+					if ( curGest._hitType == m_beat._type )
+					{
+						m_beat._flag = BeatFlag.eHitted;
+						
+						//[unfinished]	play an animation on this position
+						
+						trace( "the flying object hitted" );
+						
+						this.owner.destroy();
+					}
+				}
+			}
+			
 		}
 		
 		//-------------------------------- private function ---------------------------------
@@ -90,7 +112,7 @@ package LogicComponent.GameComponent
 			//set the initial position
 			owner.setProperty( PositionRef, m_position );
 			
-			//[unfinished]
+			m_gestureComponent = PBE.lookupEntity( "GameLogic" ).lookupComponentByName( "GestureReconize" ) as GestureRecoComponent;
 		}
 
 		//callback when removed

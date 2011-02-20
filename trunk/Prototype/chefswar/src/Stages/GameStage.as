@@ -91,9 +91,8 @@ package Stages
 			
 			//initial gesture recognize component	( )
 			var gestureReco:GestureRecoComponent = new GestureRecoComponent();
-			gestureReco.CUR_TIME = new PropertyReference( "@CenterControl.CUR_TIME" );
+			gestureReco.SetSlidePanel( this );
 			m_coreLogic.addComponent( gestureReco, "GestureReconize" );
-			
 			m_coreLogic.initialize( "GameLogic" );
 		}
 		
