@@ -1,5 +1,6 @@
 package Stages 
 {
+	import dataStruct.ActionInfo;
 	import dataStruct.GameSettings;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -43,7 +44,11 @@ package Stages
 			//game initial
 			
 			GlobalWork.g_gameSetting = new GameSettings();
-			GlobalWork.g_gameSetting.HitRange = 10;
+			GlobalWork.g_gameSetting.HitRange = 100;
+			GlobalWork.g_gameSetting.AllGestures = new Array();
+			GlobalWork.g_gameSetting.AllGestures.push( new ActionInfo( "dish", "222", "dish" ) );
+			GlobalWork.g_gameSetting.AllGestures.push( new ActionInfo( "knife", "111", "knife" ) );
+			GlobalWork.g_gameSetting.AllGestures.push( new ActionInfo( "cup", "000", "cup" ) );
 		}
 		
 		//-------------------------------- callback function --------------------------------

@@ -7,6 +7,7 @@ package LogicComponent.GameComponent
 	import flash.display.Sprite;
 	import GestureReco.gesture.GestureEvent;
 	import GestureReco.gesture.MouseGesture;
+	import com.pblabs.engine.PBE;
 	
 	/**
 	 * ...
@@ -18,13 +19,14 @@ package LogicComponent.GameComponent
 		
 		//-------------------------------- public member ------------------------------------
 		
-		public var CUR_TIME:PropertyReference = null;
-		
 		//-------------------------------- private member -----------------------------------
 		
+		private var m_drawing:Boolean = false;
 		private var m_gestureReco:MouseGesture = null;
 		private var m_slidePanel:Sprite = null;
 		private var m_curAction:ActionInfo = null;
+		
+		private var m_gestExist:int = 0;
 		
 		//-------------------------------- public function ----------------------------------
 		
@@ -44,9 +46,25 @@ package LogicComponent.GameComponent
 		{
 			super.onTick( deltaTime );
 			
-			var cutTime:Number = this.owner.getProperty( CUR_TIME ) as Number;
+			//draw the trace of gesture
+			if ( m_drawing == true )
+			{
+				m_slidePanel.graphics.lineTo( PBE.mainClass.mouseX, PBE.mainClass.mouseY );
+			}
 			
-			//[unfinished]
+			//[temp]
+			if ( m_gestExist == 0 )
+			{
+				if ( m_curAction != null )
+				{
+					m_gestExist ++;
+				}
+			}
+			else if( m_gestExist > 1 )
+			{
+				m_gestExist = 0;
+				m_curAction = null;
+			}
 		}
 		
 		/**
@@ -74,10 +92,20 @@ package LogicComponent.GameComponent
 		{
 			super.onAdd();
 			
+			//initial gesture reconize
 			m_gestureReco = new MouseGesture( m_slidePanel );
 			m_gestureReco.addEventListener( GestureEvent.GESTURE_MATCH, _onMatch );
+			m_gestureReco.addEventListener( GestureEvent.START_CAPTURE, _onStartCap );
+			m_gestureReco.addEventListener( GestureEvent.STOP_CAPTURE, _onStopCap );
 			
-			//[unfinished]
+			//add gesture
+			var len:int = GlobalWork.g_gameSetting.AllGestures.length;
+			var act:ActionInfo = null;
+			for ( var i:int = 0; i < len; i++ )
+			{
+				act = GlobalWork.g_gameSetting.AllGestures[i] as ActionInfo;
+				m_gestureReco.addGesture( act, act._gestureCode );
+			}
 			
 		}
 
@@ -93,7 +121,23 @@ package LogicComponent.GameComponent
 		
 		private function _onMatch( evt:GestureEvent ):void
 		{
-			//[unfinished]
+			m_curAction = evt.datas as ActionInfo;
+		}
+		
+		private function _onStartCap( evt:GestureEvent ):void
+		{
+			m_drawing = true;
+			
+			m_slidePanel.graphics.lineStyle( 4, 0x444444 );
+			m_slidePanel.graphics.moveTo( PBE.mainClass.mouseX, PBE.mainClass.mouseY );
+
+		}
+		
+		private function _onStopCap( evt:GestureEvent ):void
+		{
+			m_drawing = false;
+			
+			m_slidePanel.graphics.clear();
 		}
 		
 	}
