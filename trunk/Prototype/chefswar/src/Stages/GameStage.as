@@ -7,6 +7,7 @@ package Stages
 	import com.pblabs.engine.PBE;
 	import LogicComponent.GameComponent.BeatGeneratorComponent;
 	import LogicComponent.GameComponent.CenterControlComponent;
+	import LogicComponent.GameComponent.GestureRecoComponent;
 	
 	/**
 	 * ...
@@ -15,7 +16,7 @@ package Stages
 	public class GameStage extends BaseUIScreen 
 	{
 		//-------------------------------- static member ------------------------------------
-			
+		
 		//-------------------------------- private member -----------------------------------
 		
 		private var m_fightAni:MovieClip = null;
@@ -77,18 +78,21 @@ package Stages
 			//allocate an entity
 			m_coreLogic = PBE.allocateEntity();
 			
-			//add CenterControlComponent
+			//add CenterControlComponent	( play the music )
 			var centerControl:CenterControlComponent = new CenterControlComponent();
 			centerControl.SetSoundPlayer( GlobalWork.g_soundPlayer );
 			m_coreLogic.addComponent( centerControl, "CenterControl" );
 			
-			//initial beat generator component
+			//initial beat generator component		( get the process of the music from CenterControlComponent and generate the special object ) 
 			var beatGen:BeatGeneratorComponent = new BeatGeneratorComponent();
 			beatGen.SetBeatsBase( GlobalWork.g_soundBeatsBase );
 			beatGen.CUR_TIME = new PropertyReference( "@CenterControl.CUR_TIME" );
 			m_coreLogic.addComponent( beatGen, "BeatGenerator" );
 			
-			//[unfinished]
+			//initial gesture recognize component	( )
+			var gestureReco:GestureRecoComponent = new GestureRecoComponent();
+			gestureReco.CUR_TIME = new PropertyReference( "@CenterControl.CUR_TIME" );
+			m_coreLogic.addComponent( gestureReco, "GestureReconize" );
 			
 			m_coreLogic.initialize( "GameLogic" );
 		}

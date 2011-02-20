@@ -1,5 +1,6 @@
 package Stages 
 {
+	import dataStruct.GameSettings;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import com.pblabs.engine.PBE;
@@ -34,6 +35,15 @@ package Stages
 			this.addChild( UI_ROOT );
 			
 			this.addEventListener( MouseEvent.CLICK, _onClk );
+		}
+		
+		//enter callback
+		override protected function onEnter():void 
+		{
+			//game initial
+			
+			GlobalWork.g_gameSetting = new GameSettings();
+			GlobalWork.g_gameSetting.HitRange = 10;
 		}
 		
 		//-------------------------------- callback function --------------------------------

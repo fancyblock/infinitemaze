@@ -13,20 +13,20 @@
 		<Beat>
 			<appearBeat>5</appearBeat>	<!-- the time of flying object appear -->
 			<hitBeat>10</hitBeat>		<!-- the time of flying object be hitted -->
-			<hitType>1</hitType>		<!-- flying object type --> 
-			<dropPoint>1</dropPoint>	<!-- drop point -->
+			<hitType>dish</hitType>		<!-- flying object type --> 
+			<dropPoint>0</dropPoint>	<!-- drop point -->
 		</Beat>
 		<Beat>
 			<appearBeat>12</appearBeat>	<!-- the time of flying object appear -->
 			<hitBeat>17</hitBeat>		<!-- the time of flying object be hitted -->
-			<hitType>2</hitType>		<!-- flying object type --> 
-			<dropPoint>2</dropPoint>	<!-- drop point -->
+			<hitType>knife</hitType>	<!-- flying object type --> 
+			<dropPoint>1</dropPoint>	<!-- drop point -->
 		</Beat>
 		<Beat>
 			<appearBeat>19</appearBeat>	<!-- the time of flying object appear -->
 			<hitBeat>24</hitBeat>		<!-- the time of flying object be hitted -->
-			<hitType>3</hitType>		<!-- flying object type --> 
-			<dropPoint>3</dropPoint>	<!-- drop point -->
+			<hitType>cup</hitType>		<!-- flying object type --> 
+			<dropPoint>2</dropPoint>	<!-- drop point -->
 		</Beat>
 		<!-- all the beats ... -->
 	</BeatInfo>

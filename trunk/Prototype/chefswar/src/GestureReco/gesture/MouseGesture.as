@@ -37,7 +37,7 @@
 
 package GestureReco.gesture {
 	
-	import com.foxaweb.ui.gesture.*;
+	import GestureReco.gesture.*;
 	
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
