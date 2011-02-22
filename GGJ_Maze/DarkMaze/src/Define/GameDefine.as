@@ -22,7 +22,7 @@ package Define
 		public static var HeroVelocity:Number = 2;
 		public static var EvilVelocity:Number = 1.8;
 		
-		public static var HumanCount:int = 20;
+		public static var HumanCount:int = 25;
 		public static var DemonCount:int = 30;
 		
 		public static var CountdownSec:int = 5;

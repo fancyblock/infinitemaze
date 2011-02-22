@@ -92,8 +92,6 @@ package Stage
 			
 			if ( GlobalWork.GameState == GameDefine.GameState_Peace || GlobalWork.GameState == GameDefine.GameState_Fight )
 			{
-				trace( "....>" );
-				
 				//update mover
 				MoverHolderManager.Singleton.Update();
 				
@@ -379,18 +377,21 @@ package Stage
 			{
 				destroyAll();
 				GlobalWork.ResultInfo = "You Win";
+				GlobalWork.GameState = null;
 				this.FadeOutToScreen( WindowEnum.EndScreen );
 			}
 			else if( GlobalWork.HeroDie == true )
 			{
 				destroyAll();
 				GlobalWork.ResultInfo = "Demon catch you";
+				GlobalWork.GameState = null;
 				this.FadeOutToScreen( WindowEnum.EndScreen );
 			}
 			else if( arriveExport() == true )
 			{
 				destroyAll();
 				GlobalWork.ResultInfo = "You Escape";
+				GlobalWork.GameState = null;
 				this.FadeOutToScreen( WindowEnum.EndScreen );
 			}
 		}

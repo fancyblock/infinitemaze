@@ -79,8 +79,37 @@ package Mover
 			
 			if ( this.Move( m_curDir, GameDefine.EvilVelocity ) == false )
 			{
-				m_curDir = getRandDir();
+				m_curDir = getNextDir();
 			}
+		}
+		
+		//return next direction
+		private function getNextDir():int
+		{
+			var dir:int;
+			
+			var randS:Number = Math.random();
+			
+			switch( m_curDir )
+			{
+			case DirectionDef.DIR_0:
+				dir = randS > 0.5 ? DirectionDef.DIR_9 : DirectionDef.DIR_3;
+				break;
+			case DirectionDef.DIR_3:
+				dir = randS > 0.5 ? DirectionDef.DIR_0 : DirectionDef.DIR_6;
+				break;
+			case DirectionDef.DIR_6:
+				dir = randS > 0.5 ? DirectionDef.DIR_3 : DirectionDef.DIR_9;
+				break;
+			case DirectionDef.DIR_9:
+				dir = randS > 0.5 ? DirectionDef.DIR_6 : DirectionDef.DIR_0;
+				break;
+			default:
+				dir = DirectionDef.DIR_0;
+				break;
+			}
+			
+			return dir;
 		}
 		
 		//return a random direction
