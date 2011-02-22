@@ -1,5 +1,6 @@
 package Stage 
 {
+	import com.pblabs.engine.resource.provider.BulkLoaderResourceProvider;
 	import Define.GameDefine;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -89,13 +90,18 @@ package Stage
 		{
 			super.onFrame( delta );
 			
-			//update mover
-			MoverHolderManager.Singleton.Update();
-			
-			updateVisibleArea();
-			updateMapOffset();
-			updateUI();
-			stateJudge();
+			if ( GlobalWork.GameState == GameDefine.GameState_Peace || GlobalWork.GameState == GameDefine.GameState_Fight )
+			{
+				trace( "....>" );
+				
+				//update mover
+				MoverHolderManager.Singleton.Update();
+				
+				updateVisibleArea();
+				updateMapOffset();
+				updateUI();
+				stateJudge();
+			}
 		}
 		
 		//-------------------------------- private function ---------------------------------
@@ -371,19 +377,28 @@ package Stage
 			//win
 			if ( GlobalWork.EvilCnt == 0 )
 			{
+				destroyAll();
 				GlobalWork.ResultInfo = "You Win";
 				this.FadeOutToScreen( WindowEnum.EndScreen );
 			}
 			else if( GlobalWork.HeroDie == true )
 			{
+				destroyAll();
 				GlobalWork.ResultInfo = "Demon catch you";
 				this.FadeOutToScreen( WindowEnum.EndScreen );
 			}
 			else if( arriveExport() == true )
 			{
+				destroyAll();
 				GlobalWork.ResultInfo = "You Escape";
 				this.FadeOutToScreen( WindowEnum.EndScreen );
 			}
+		}
+		
+		//destroy all when game over
+		private function destroyAll():void
+		{
+			m_timer.stop();
 		}
 		
 		//judge if the hero arrive the export

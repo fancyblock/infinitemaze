@@ -41,17 +41,7 @@ package Stage
 			addChild( UI_ROOT );
 			
 			m_txtResultInfo = UI_ROOT.getChildByName( "txtResultInfo" ) as TextField;
-			m_txtResultInfo.autoSize = TextFieldAutoSize.CENTER;
-			m_addInfo = new TextField();
-			UI_ROOT.addChild( m_addInfo );
-			m_addInfo.x = m_txtResultInfo.x;
-			m_addInfo.y = m_txtResultInfo.y + m_txtResultInfo.height + 20;
-			m_addInfo.selectable = false;
-			m_addInfo.textColor = 0xf00000;
-			m_addInfo.autoSize = TextFieldAutoSize.CENTER;
-			m_addInfo.width = m_txtResultInfo.width;
-			m_addInfo.defaultTextFormat = m_txtResultInfo.defaultTextFormat;
-			
+			m_addInfo = UI_ROOT.getChildByName( "txtInfo" ) as TextField;
 		}
 		
 		//enter this stage

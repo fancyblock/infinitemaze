@@ -39,7 +39,7 @@
     <option staticLinkRSL="True" />
     <option additional="" />
     <option compilerConstants="" />
-    <option customSDK="" />
+    <option customSDK="D:\flexsdk4" />
   </build>
   <!-- SWC Include Libraries -->
   <includeLibraries>
